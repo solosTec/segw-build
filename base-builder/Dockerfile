@@ -3,8 +3,8 @@ FROM ubuntu:bionic
 RUN apt-get update && \
 	apt-get install -y build-essential git cmake autoconf libtool pkg-config libssl-dev wget libreadline-dev
 
-RUN wget https://dl.bintray.com/boostorg/release/1.70.0/source/boost_1_70_0.tar.bz2 && \
-    tar xjvf boost_1_70_0.tar.bz2 && \
-    cd boost_1_70_0 && \
+RUN wget https://dl.bintray.com/boostorg/release/1.73.0/source/boost_1_73_0.tar.bz2 && \
+    tar xjvf boost_1_73_0.tar.bz2 && \
+    cd boost_1_73_0 && \
     ./bootstrap.sh --with-libraries=filesystem,program_options,system,thread,timer,random,test,regex && \
     ./b2 install
