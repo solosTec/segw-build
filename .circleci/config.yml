@@ -7,8 +7,8 @@ jobs:
     steps:
       - setup_remote_docker
       - checkout
-      - run: cd base-builder && docker build . -t seemann/cpp-build-base:0.1.0
       - run: docker login -u \$DOCKER_USERNAME -p \$DOCKER_PASSWORD
+      - run: cd base-builder && docker build . -t seemann/cpp-build-base:0.1.0
       - run: docker push seemann/cpp-build-base:0.1.0
 
 workflows:
