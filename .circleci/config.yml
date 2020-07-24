@@ -2,10 +2,12 @@ version: 2.1
 
 jobs:
   build-base-image:
+    docker:
+      - image: circleci/base
     steps:
       - setup_remote_docker
       - checkout
-      - run: docker build . -t seemann/cpp-build-base:0.1.0
+      - run: cd base-builder && docker build . -t seemann/cpp-build-base:0.1.0
       - run: docker login -u \$DOCKER_USERNAME -p \$DOCKER_PASSWORD
       - run: docker push seemann/cpp-build-base:0.1.0
 
