@@ -2,6 +2,12 @@ FROM seemann/cyng:0.1.0 AS build
 
 WORKDIR /src-crypto
 
+RUN wget https://dl.bintray.com/boostorg/release/1.73.0/source/boost_1_73_0.tar.bz2 && \
+    tar xjvf boost_1_673_0.tar.bz2 && \
+    cd boost_1_73_0 && \
+    ./bootstrap.sh --with-libraries=filesystem,program_options,system,thread,timer,random,test,regex && \
+    ./b2 install
+
 RUN git clone https://github.com/solosTec/crypto .
 
 RUN mkdir -p build/x64
