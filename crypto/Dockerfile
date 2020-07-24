@@ -6,4 +6,4 @@ RUN git clone https://github.com/solosTec/crypto .
 
 RUN mkdir -p build/x64
 
-RUN cd build/x64 && cmake -DCRYPT_BUILD_TEST:bool=ON -DCMAKE_BUILD_TYPE=Debug ../..  && make
+RUN cd build/x64 && cmake -DCRYPT_BUILD_TEST:bool=ON -DCMAKE_BUILD_TYPE=Debug ../..  && make && make install
