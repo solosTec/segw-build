@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build-base-image:
     docker:
-      - image: circleci/base
+      - image: cimg/base:2020.01
     steps:
       - setup_remote_docker
       - checkout
