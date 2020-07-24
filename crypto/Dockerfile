@@ -1,6 +1,6 @@
 FROM seemann/cyng:0.1.0 AS build
 
-WORKDIR /src
+WORKDIR /src-crypto
 
 RUN git clone https://github.com/solosTec/crypto .
 

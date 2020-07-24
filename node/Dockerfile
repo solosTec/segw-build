@@ -1,6 +1,6 @@
 FROM seemann/crypto:0.1.0 AS build
 
-WORKDIR /src
+WORKDIR /src-node
 
 RUN git clone https://github.com/solosTec/node .
 
