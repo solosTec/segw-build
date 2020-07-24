@@ -4,9 +4,8 @@ jobs:
   build-base-image:
     machine: true
     steps:
-      - setup_remote_docker
       - checkout
-      - run: docker login -u $DOCKER_USERNAME -password $DOCKER_PASSWORD
+      - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
       - run: cd base-builder && docker build . -t seemann/cpp-build-base:0.1.0
       - run: docker push seemann/cpp-build-base:0.1.0
 
