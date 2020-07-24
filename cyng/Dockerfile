@@ -6,4 +6,4 @@ RUN git clone https://github.com/solosTec/cyng .
 
 RUN mkdir -p build
 
-RUN cd build && cmake ..  && make -j4 all
+RUN cd build && cmake ..  && make -j4 all && make install
