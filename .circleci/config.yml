@@ -1,13 +1,22 @@
 version: 2.1
 
 jobs:
+
   build-base-image:
     machine: true
     steps:
       - checkout
-      - run: docker login --username $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
       - run: cd base-builder && docker build . -t seemann/cpp-build-base:0.1.0
       - run: docker push seemann/cpp-build-base:0.1.0
+
+  build-cyng:
+    machine: true
+    steps:
+      - checkout
+      - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
+      - run: cd cyng && docker build . -t seemann/cyng:0.1.0
+      - run: docker push seemann/cyng:0.1.0
 
 workflows:
   version: 2
@@ -15,3 +24,7 @@ workflows:
     jobs:
       - build-base-image:
           context: DOCKER_HUB
+      - build-cyng:
+          context: DOCKER_HUB
+          requires:
+            - build-base-image
