@@ -7,7 +7,6 @@ jobs:
     steps:
       - checkout
       - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
-      - run: docker pull seemann/cpp-build-base:0.1.0
       - run: cd base-builder && docker build . -t seemann/cpp-build-base:0.1.0
       - run: docker push seemann/cpp-build-base:0.1.0
 
@@ -16,9 +15,16 @@ jobs:
     steps:
       - checkout
       - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
-      - run: docker pull seemann/cyng:0.1.0
       - run: cd cyng && docker build . -t seemann/cyng:0.1.0
       - run: docker push seemann/cyng:0.1.0
+
+  build-crypto:
+    machine: true
+    steps:
+      - checkout
+      - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
+      - run: cd cyng && docker build . -t seemann/crypto:0.1.0
+      - run: docker push seemann/crypto:0.1.0
 
 workflows:
   version: 2
@@ -30,3 +36,7 @@ workflows:
           context: DOCKER_HUB
           requires:
             - build-base-image
+      - build-crypto:
+          context: DOCKER_HUB
+          requires:
+            - build-cyng
