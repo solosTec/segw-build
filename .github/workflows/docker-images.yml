@@ -17,4 +17,5 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker c++ Base image
+      run: echo "todo"
       #run: docker build . --file base-builder/Dockerfile --tag seemann/cpp-build-base:$(date +%s)
