@@ -13,7 +13,7 @@ RUN apt-get update && \
 	wget  \
 	libreadline-dev  \
 	lsb-release  \
-	unixodbc-dev  \
+	unixodbc-dev
 	#libmysqlcppconn7v5
 
 
