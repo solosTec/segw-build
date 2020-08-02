@@ -25,5 +25,7 @@ RUN wget https://dl.bintray.com/boostorg/release/${BOOST_VERSION}/source/boost_$
 WORKDIR /src
 RUN git clone https://github.com/mysql/mysql-connector-cpp && \
     cd mysql-connector-cpp/ && \
-    mkdir build && cd build && \
+    mkdir build &&  \
+    cd build && \
+    cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local -DWITH_CONCPP=/usr/local/lib && \
     cmake --build . --target install
