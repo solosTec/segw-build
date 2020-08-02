@@ -12,6 +12,6 @@ RUN git submodule update --init --recursive
 
 RUN mkdir -p build && \
     cd build &&  \
-    cmake -D CMAKE_BUILD_TYPE=Release ..  &&  \
+    cmake -DCMAKE_BUILD_TYPE=Release -DLSB_RELEASE_ID_SHORT=Ubuntu ..  &&  \
     make -j4 all &&  \
     make install

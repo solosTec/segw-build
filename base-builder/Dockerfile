@@ -11,8 +11,7 @@ RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 800 --slave /u
 # gcc 8 should now be the default one
 RUN gcc  --version
 
-# install the boost version - version can be overriden by build args
-
+# install the boost version - version can be overriden by --build-args
 ARG BOOST_VERSION=1.73.0
 ARG BOOST_VERSION_NAME=1_73_0
 
