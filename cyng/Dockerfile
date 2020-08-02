@@ -12,6 +12,6 @@ RUN git submodule update --init --recursive
 
 RUN mkdir -p build && \
     cd build &&  \
-    cmake -DCMAKE_BUILD_TYPE=Release -DMYSQL_CONNECTOR_ROOT_DIR:PATH=../mysql-connector-cpp/build ..  &&  \
+    cmake -DCMAKE_BUILD_TYPE=Release -DMYSQL_CONNECTOR_ROOT_DIR:PATH=/src/mysql-connector-cpp/build ..  &&  \
     make -j4 all &&  \
     make install
