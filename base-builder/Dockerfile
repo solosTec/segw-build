@@ -1,7 +1,7 @@
 FROM ubuntu:bionic
 
 RUN apt-get update && \
-	apt-get install -y build-essential apt-utils git cmake autoconf libtool pkg-config libssl-dev wget libreadline-dev
+	apt-get install -y build-essential apt-utils git cmake autoconf libtool pkg-config libssl-dev wget libreadline-dev lsb-release
 
 #https://askubuntu.com/questions/1028601/install-gcc-8-only-on-ubuntu-18-04
 RUN apt-get install -y gcc-8 g++-8
