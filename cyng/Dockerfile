@@ -10,6 +10,8 @@ RUN git checkout v0.8
 
 RUN git submodule update --init --recursive
 
-RUN mkdir -p build
-
-RUN cd build && cmake -D CMAKE_BUILD_TYPE=Release ..  && make -j4 all && make install
+RUN mkdir -p build && \
+    cd build &&  \
+    cmake -D CMAKE_BUILD_TYPE=Release ..  &&  \
+    make -j4 all &&  \
+    make install
