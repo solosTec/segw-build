@@ -14,7 +14,7 @@ RUN apt-get update && \
 	libreadline-dev  \
 	lsb-release  \
 	unixodbc-dev  \
-	libmysqlcppconn7v5
+	#libmysqlcppconn7v5
 
 
 #https://askubuntu.com/questions/1028601/install-gcc-8-only-on-ubuntu-18-04
@@ -36,10 +36,10 @@ RUN wget https://dl.bintray.com/boostorg/release/${BOOST_VERSION}/source/boost_$
     ./b2 install
 
 # install mysql connector from src
-WORKDIR /src
-RUN git clone https://github.com/mysql/mysql-connector-cpp && \
-    cd mysql-connector-cpp/ && \
-    mkdir build &&  \
-    cd build && \
-    cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local -DWITH_CONCPP=/usr/local/lib && \
-    cmake --build . --target install
+#WORKDIR /src
+#RUN git clone https://github.com/mysql/mysql-connector-cpp && \
+#    cd mysql-connector-cpp/ && \
+#    mkdir build &&  \
+#    cd build && \
+#    cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local -DWITH_CONCPP=/usr/local/lib && \
+#    cmake --build . --target install
