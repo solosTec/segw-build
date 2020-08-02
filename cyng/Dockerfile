@@ -10,9 +10,12 @@ RUN git checkout v0.8
 
 RUN git submodule update --init --recursive
 
+# patch CMakeLists set compiler version to link against stdc++fs and avoid install error
+RUN sed -i 's/CyngConfigVersion.cmake/ConfigVersion.cmake/g' CMakeLists.txt && \
+    sed -i 's/:8.2.1>/:8.4.0>/g' CMakeLists.txt
+
 RUN mkdir -p build && \
     cd build &&  \
-    #cmake -DCMAKE_BUILD_TYPE=Release -DMYSQL_CONNECTOR_ROOT_DIR:PATH=/src/mysql-connector-cpp/build ..  &&  \
     cmake -DCMAKE_BUILD_TYPE=Release ..  &&  \
     make -j4 all &&  \
     make install
