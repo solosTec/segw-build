@@ -22,7 +22,7 @@ FROM ubuntu:bionic
 
 RUN apt-get update && \
 	apt-get install -y  \
-	libssl  \
+	libssl-dev  \
 	unixodbc
 
 WORKDIR /opt
