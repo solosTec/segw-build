@@ -18,13 +18,13 @@ RUN mkdir -p build/x64 && \
     #make install
 
 
-FROM ubuntu:bionic
-
-RUN apt-get update && \
-	apt-get install -y  \
-	libssl-dev  \
-	unixodbc
-
-WORKDIR /opt
-
-COPY --from=build /src/node/build/x64/nodes ./
+#FROM ubuntu:bionic
+#
+#RUN apt-get update && \
+#	apt-get install -y  \
+#	libssl-dev  \
+#	unixodbc
+#
+#WORKDIR /opt
+#
+#COPY --from=build /src/node/build/x64/nodes ./
