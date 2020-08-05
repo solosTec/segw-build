@@ -34,21 +34,33 @@ jobs:
       - run: cd node && docker build . -t seemann/node:0.1.0
       - run: docker push seemann/node:0.1.0
 
+  build-master:
+    machine: true
+    steps:
+      - checkout
+      - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
+      - run: cd master && docker build . -t seemann/master:0.1.0
+      - run: docker push seemann/master:0.1.0
+
 workflows:
   version: 2
   build-and-push-on-commit:
     jobs:
-      - build-base-image:
+#      - build-base-image:
+#          context: DOCKER_HUB
+#      - build-cyng:
+#          context: DOCKER_HUB
+#          requires:
+#            - build-base-image
+#      - build-crypto:
+#          context: DOCKER_HUB
+#          requires:
+#            - build-cyng
+#      - build-node:
+#          context: DOCKER_HUB
+#          requires:
+#            - build-crypto
+      - build-master:
           context: DOCKER_HUB
-      - build-cyng:
-          context: DOCKER_HUB
-          requires:
-            - build-base-image
-      - build-crypto:
-          context: DOCKER_HUB
-          requires:
-            - build-cyng
-      - build-node:
-          context: DOCKER_HUB
-          requires:
-            - build-crypto
+#          requires:
+#            - build-node
