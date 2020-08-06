@@ -55,13 +55,13 @@ jobs:
 workflows:
   version: 2
   build-and-push-on-commit:
+    when:
+      condition:
+        or:
+          - equal: [ base, <<pipeline.parameters.start_at>> ]
+          - equal: [ node, <<pipeline.parameters.start_at>> ]
     jobs:
       - test
-          when:
-            condition:
-              or:
-                - equal: [ base, <<pipeline.parameters.start_at>> ]
-                - equal: [ node, <<pipeline.parameters.start_at>> ]
 #      - build-base-image:
 #          context: DOCKER_HUB
 #      - build-cyng:
