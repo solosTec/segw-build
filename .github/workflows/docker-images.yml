@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Start Docker Build on CircleCi
 
 on:
 #  push:
@@ -9,16 +9,12 @@ on:
 
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
     container:
-      image: node:12-alpine
+      image: ubuntu:bionic
     steps:
       - name: Start complete build
         run: |
-          apk add curl
-          apk add bash
-          curl -u ${CIRCLECI_TOKEN}: -X POST https://circleci.com/api/v2/project/gh/mseemannn/segw-build/pipeline --header "Content-Type: application/json" -d '{"branch":"master"}'
-
+          apt install -y  curl
+          curl -u ${CIRCLECI_TOKEN}: -X POST https://circleci.com/api/v2/project/gh/mseemann/segw-build/pipeline --header "Content-Type: application/json" -d '{"branch":"master"}'
