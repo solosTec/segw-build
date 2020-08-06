@@ -22,6 +22,7 @@ jobs:
   build-base-image:
     machine: true
     steps:
+      - run: echo "base check"
       - when:
           condition:
             equal: [ base, <<pipeline.parameters.start_at>> ]
@@ -34,6 +35,7 @@ jobs:
   build-cyng:
     machine: true
     steps:
+      - run: echo "cyng check"
       - when:
           condition:
             or:
@@ -48,6 +50,7 @@ jobs:
   build-crypto:
     machine: true
     steps:
+      - run: echo "crypto check"
       - when:
           condition:
             or:
@@ -63,6 +66,7 @@ jobs:
   build-node:
     machine: true
     steps:
+      - run: echo "node check"
       - when:
           condition:
             or:
@@ -79,6 +83,7 @@ jobs:
   build-master:
     machine: true
     steps:
+      - run: echo "master check"
       - when:
           condition:
             or:
