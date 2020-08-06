@@ -18,7 +18,5 @@ jobs:
         run: |
           apk add curl
           apk add bash
-          echo "{ github.event.inputs.start_at }"
-          echo "{{ github.event.inputs.start_at }}"
-          echo "${{ github.event.inputs.start_at }}"
+          echo '{"branch":"master", "start_at": "${{ github.event.inputs.start_at }}"}'
           curl -u ${{secrets.CIRCLECI_TOKEN}}: -X POST https://circleci.com/api/v2/project/gh/mseemann/segw-build/pipeline --header "Content-Type: application/json" -d '{"branch":"master", "start_at": "${{ github.event.inputs.start_at }}"}'
