@@ -10,6 +10,12 @@ jobs:
   test:
     machine: true
     steps:
+      - run: echo "pre condition"
+      - when:
+          condition:
+            or:
+              - equal: [ base, <<pipeline.parameters.start_at>> ]
+              - equal: [ node, <<pipeline.parameters.start_at>> ]
       - run: echo "<<pipeline.parameters.start_at>>"
 
   build-base-image:
@@ -55,11 +61,6 @@ jobs:
 workflows:
   version: 2
   build-and-push-on-commit:
-    when:
-      condition:
-        or:
-          - equal: [ base, <<pipeline.parameters.start_at>> ]
-          - equal: [ node, <<pipeline.parameters.start_at>> ]
     jobs:
       - test
 #      - build-base-image:
