@@ -23,7 +23,8 @@ jobs:
     machine: true
     steps:
       - when:
-          condition: [ base, <<pipeline.parameters.start_at>> ]
+          condition:
+            - equal: [ base, <<pipeline.parameters.start_at>> ]
           steps:
             - checkout
             - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
@@ -38,11 +39,11 @@ jobs:
             or:
               - equal: [ base, <<pipeline.parameters.start_at>> ]
               - equal: [ cyng, <<pipeline.parameters.start_at>> ]
-        steps:
-          - checkout
-          - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
-          - run: cd cyng && docker build . -t seemann/cyng:0.1.0
-          - run: docker push seemann/cyng:0.1.0
+          steps:
+            - checkout
+            - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
+            - run: cd cyng && docker build . -t seemann/cyng:0.1.0
+            - run: docker push seemann/cyng:0.1.0
 
   build-crypto:
     machine: true
@@ -53,11 +54,11 @@ jobs:
               - equal: [ base, <<pipeline.parameters.start_at>> ]
               - equal: [ cyng, <<pipeline.parameters.start_at>> ]
               - equal: [ crypto, <<pipeline.parameters.start_at>> ]
-        steps:
-          - checkout
-          - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
-          - run: cd crypto && docker build . -t seemann/crypto:0.1.0
-          - run: docker push seemann/crypto:0.1.0
+          steps:
+            - checkout
+            - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
+            - run: cd crypto && docker build . -t seemann/crypto:0.1.0
+            - run: docker push seemann/crypto:0.1.0
 
   build-node:
     machine: true
@@ -69,11 +70,11 @@ jobs:
               - equal: [ cyng, <<pipeline.parameters.start_at>> ]
               - equal: [ crypto, <<pipeline.parameters.start_at>> ]
               - equal: [ node, <<pipeline.parameters.start_at>> ]
-        steps:
-          - checkout
-          - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
-          - run: cd node && docker build . -t seemann/node:0.1.0
-          - run: docker push seemann/node:0.1.0
+          steps:
+            - checkout
+            - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
+            - run: cd node && docker build . -t seemann/node:0.1.0
+            - run: docker push seemann/node:0.1.0
 
   build-master:
     machine: true
@@ -86,11 +87,11 @@ jobs:
               - equal: [ crypto, <<pipeline.parameters.start_at>> ]
               - equal: [ node, <<pipeline.parameters.start_at>> ]
               - equal: [ master, <<pipeline.parameters.start_at>> ]
-        steps:
-          - checkout
-          - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
-          - run: cd master && docker build . -t seemann/master:0.1.0
-          - run: docker push seemann/master:0.1.0
+          steps:
+            - checkout
+            - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
+            - run: cd master && docker build . -t seemann/master:0.1.0
+            - run: docker push seemann/master:0.1.0
 
 workflows:
   version: 2
