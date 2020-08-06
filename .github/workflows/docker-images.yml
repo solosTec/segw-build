@@ -17,7 +17,6 @@ jobs:
     steps:
       - name: Start complete build
         run: |
-          apk add curl
-          apk add bash
+          apt install -y curl bash
           curl -u ${CIRCLECI_TOKEN}: -X POST https://circleci.com/api/v2/project/gh/mseemannn/segw-build/pipeline --header "Content-Type: application/json" -d '{"branch":"master"}'
 
