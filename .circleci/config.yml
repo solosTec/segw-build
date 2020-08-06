@@ -23,8 +23,7 @@ jobs:
     machine: true
     steps:
       - when:
-          condition:
-            - equal: [ base, <<pipeline.parameters.start_at>> ]
+          condition: [ base, <<pipeline.parameters.start_at>> ]
           steps:
             - checkout
             - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
