@@ -1,10 +1,10 @@
 name: Docker Image CI
 
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+#  push:
+#    branches: [ master ]
+#  pull_request:
+#    branches: [ master ]
   workflow_dispatch:
 
 
@@ -15,7 +15,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Build the Docker c++ Base image
-      run: echo "todo"
-      #run: docker build . --file base-builder/Dockerfile --tag seemann/cpp-build-base:$(date +%s)
+      run: |
+        apk add curl
+        apk add bash
+        curl -u ${CIRCLECI_TOKEN}: -X POST https://circleci.com/api/v2/project/gh/mseemannn/segw-build/pipeline --header "Content-Type: application/json" -d '{"branch":"master"}'
+

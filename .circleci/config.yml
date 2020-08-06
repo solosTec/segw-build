@@ -46,21 +46,21 @@ workflows:
   version: 2
   build-and-push-on-commit:
     jobs:
-      - build-base-image:
-          context: DOCKER_HUB
-      - build-cyng:
-          context: DOCKER_HUB
-          requires:
-            - build-base-image
-      - build-crypto:
-          context: DOCKER_HUB
-          requires:
-            - build-cyng
-      - build-node:
-          context: DOCKER_HUB
-          requires:
-            - build-crypto
-      - build-master:
-          context: DOCKER_HUB
-          requires:
-            - build-node
+#      - build-base-image:
+#          context: DOCKER_HUB
+#      - build-cyng:
+#          context: DOCKER_HUB
+#          requires:
+#            - build-base-image
+#      - build-crypto:
+#          context: DOCKER_HUB
+#          requires:
+#            - build-cyng
+#      - build-node:
+#          context: DOCKER_HUB
+#          requires:
+#            - build-crypto
+#      - build-master:
+#          context: DOCKER_HUB
+#          requires:
+#            - build-node
