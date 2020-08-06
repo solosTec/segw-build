@@ -1,12 +1,12 @@
 name: Start Docker Build on CircleCi
 
 on:
-#  push:
-#    branches: [ master ]
-#  pull_request:
-#    branches: [ master ]
   workflow_dispatch:
-
+    inputs:
+      startAt:
+        description: 'Start the circleci workflow with base, node or crypto '
+        required: true
+        default: 'base'
 
 jobs:
   build:
@@ -18,4 +18,4 @@ jobs:
         run: |
           apk add curl
           apk add bash
-          curl -u ${{secrets.CIRCLECI_TOKEN}}: -X POST https://circleci.com/api/v2/project/gh/mseemann/segw-build/pipeline --header "Content-Type: application/json" -d '{"branch":"master"}'
+          curl -u ${{secrets.CIRCLECI_TOKEN}}: -X POST https://circleci.com/api/v2/project/gh/mseemann/segw-build/pipeline --header "Content-Type: application/json" -d '{"branch":"master", "startAt": "${{ github.event.inputs.startAt }}"}'
