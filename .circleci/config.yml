@@ -16,7 +16,8 @@ jobs:
             or:
               - equal: [ base, <<pipeline.parameters.start_at>> ]
               - equal: [ node, <<pipeline.parameters.start_at>> ]
-      - run: echo "<<pipeline.parameters.start_at>>"
+          steps:
+            - run: echo "<<pipeline.parameters.start_at>>"
 
   build-base-image:
     machine: true
