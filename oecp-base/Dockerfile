@@ -40,6 +40,7 @@ RUN apt-get update
 RUN apt-get install -y oselas.toolchain-2018.12.0-arm-v5te-linux-gnueabi-gcc-8.2.1-glibc-2.28-binutils-2.31.1-kernel-4.19-sanitized
 # extend the PATH variable with toolchain location
 RUN echo "export PATH=$PATH:/opt/OSELAS.Toolchain-2018.12.0/arm-v5te-linux-gnueabi/gcc-8.2.1-glibc-2.28-binutils-2.31.1-kernel-4.19-sanitized/bin/" >> /etc/profile
+RUN source /etc/profile
 
 # install the boost version - version can be overriden by --build-args
 ARG BOOST_VERSION=1.73.0
@@ -51,5 +52,6 @@ RUN wget https://dl.bintray.com/boostorg/release/${BOOST_VERSION}/source/boost_$
     tar xjvf boost_${BOOST_VERSION_NAME}.tar.bz2 && \
     cd boost_${BOOST_VERSION_NAME} && \
     ./bootstrap.sh --with-libraries=filesystem,program_options,system,thread,timer,random,test,regex,date_time && \
+     sed -i 's/using gcc/using gcc : arm : arm-v5te-linux-gnueabi-c++/g'  project-config.jam && \
     ./b2 -j4 address-model=32 && \
     ./b2 install address-model=32
