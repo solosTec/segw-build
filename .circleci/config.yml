@@ -4,6 +4,9 @@ parameters:
   start_at:
     type: string
     default: base
+  branch:
+    type: string
+    default: v0.8
 
 jobs:
 
@@ -23,6 +26,7 @@ jobs:
     machine: true
     steps:
       - run: echo "base check"
+      - run: echo "<<pipeline.parameters.branch>>"
       - when:
           condition:
             equal: [ base, <<pipeline.parameters.start_at>> ]
@@ -91,6 +95,22 @@ jobs:
             - run: cd crypto && docker build . -t seemann/crypto:0.1.0
             - run: docker push seemann/crypto:0.1.0
 
+  build-oecp-crypto:
+    machine: true
+    steps:
+      - run: echo "crypto check"
+      - when:
+          condition:
+            or:
+              - equal: [ base, <<pipeline.parameters.start_at>> ]
+              - equal: [ cyng, <<pipeline.parameters.start_at>> ]
+              - equal: [ crypto, <<pipeline.parameters.start_at>> ]
+          steps:
+            - checkout
+            - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
+            - run: cd crypto && docker build . -t seemann/oecp-crypto:0.1.0
+            - run: docker push seemann/oecp-crypto:0.1.0
+
   build-node:
     machine: true
     steps:
@@ -146,6 +166,10 @@ workflows:
           context: DOCKER_HUB
           requires:
             - build-cyng
+      - build-oecp-crypto:
+          context: DOCKER_HUB
+          requires:
+            - build-oecp-cyng
       - build-node:
           context: DOCKER_HUB
           requires:
