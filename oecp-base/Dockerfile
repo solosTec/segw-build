@@ -45,8 +45,11 @@ RUN echo "export PATH=$PATH:/opt/OSELAS.Toolchain-2018.12.0/arm-v5te-linux-gnuea
 ARG BOOST_VERSION=1.73.0
 ARG BOOST_VERSION_NAME=1_73_0
 
+RUN apt-get install -y gcc-8-multilib g++-8-multilib
+
 RUN wget https://dl.bintray.com/boostorg/release/${BOOST_VERSION}/source/boost_${BOOST_VERSION_NAME}.tar.bz2 && \
     tar xjvf boost_${BOOST_VERSION_NAME}.tar.bz2 && \
     cd boost_${BOOST_VERSION_NAME} && \
     ./bootstrap.sh --with-libraries=filesystem,program_options,system,thread,timer,random,test,regex,date_time && \
-    ./b2 install
+    ./b2 -j4 address-model=32 && \
+    ./b2 install address-model=32
