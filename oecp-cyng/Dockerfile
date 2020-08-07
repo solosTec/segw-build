@@ -16,9 +16,6 @@ RUN sed -i 's/CyngConfigVersion.cmake/ConfigVersion.cmake/g' CMakeLists.txt
 
 WORKDIR /src/cyng/cross
 
-# extend path with oselas.toolchain
-RUN bash -c "source /etc/profile"
-
 ADD cross.cmake .
 
 RUN cmake -DCYNG_BUILD_TEST:bool=OFF -DCYNG_CROSS_COMPILE:bool=ON -DCYNG_SSL_SUPPORT:bool=ON -DCMAKE_TOOLCHAIN_FILE=cross.cmake .. && \
