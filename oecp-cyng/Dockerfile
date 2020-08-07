@@ -17,7 +17,7 @@ RUN sed -i 's/CyngConfigVersion.cmake/ConfigVersion.cmake/g' CMakeLists.txt
 WORKDIR /src/cyng/cross
 
 # extend path with oselas.toolchain
-RUN "source /etc/profile"
+RUN bash -c "source /etc/profile"
 
 ADD cross.cmake .
 
