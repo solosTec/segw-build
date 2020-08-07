@@ -60,6 +60,21 @@ jobs:
             - run: cd cyng && docker build . -t seemann/cyng:0.1.0
             - run: docker push seemann/cyng:0.1.0
 
+  build-oecp-cyng:
+    machine: true
+    steps:
+      - run: echo "cyng check"
+      - when:
+          condition:
+            or:
+              - equal: [ base, <<pipeline.parameters.start_at>> ]
+              - equal: [ cyng, <<pipeline.parameters.start_at>> ]
+          steps:
+            - checkout
+            - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
+            - run: cd oecp-cyng && docker build . -t seemann/oecp-cyng:0.1.0
+            - run: docker push seemann/oecp-cyng:0.1.0
+
   build-crypto:
     machine: true
     steps:
@@ -123,6 +138,10 @@ workflows:
           context: DOCKER_HUB
           requires:
             - build-base-image
+      - build-oecp-cyng:
+          context: DOCKER_HUB
+          requires:
+            - build-oecp-image
       - build-crypto:
           context: DOCKER_HUB
           requires:

@@ -38,6 +38,8 @@ RUN dpkg -i pengutronix-archive-keyring_2020.02.11_all.deb
 RUN add-apt-repository "deb http://debian.pengutronix.de/debian/ bionic main contrib non-free"
 RUN apt-get update
 RUN apt-get install -y oselas.toolchain-2018.12.0-arm-v5te-linux-gnueabi-gcc-8.2.1-glibc-2.28-binutils-2.31.1-kernel-4.19-sanitized
+# extend the PATH variable with toolchain location
+RUN echo "export PATH=$PATH:/opt/OSELAS.Toolchain-2018.12.0/arm-v5te-linux-gnueabi/gcc-8.2.1-glibc-2.28-binutils-2.31.1-kernel-4.19-sanitized/bin/" >> /etc/profile
 
 # install the boost version - version can be overriden by --build-args
 ARG BOOST_VERSION=1.73.0
