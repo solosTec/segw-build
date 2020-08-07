@@ -42,7 +42,7 @@ jobs:
           steps:
             - checkout
             - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
-            - run: cd oecp-builder && docker build . -t seemann/oecp-base:0.1.0 --build-arg BOOST_VERSION=1.73.0 --build-arg BOOST_VERSION_NAME=1_73_0
+            - run: cd oecp-base && docker build . -t seemann/oecp-base:0.1.0 --build-arg BOOST_VERSION=1.73.0 --build-arg BOOST_VERSION_NAME=1_73_0
             - run: docker push seemann/oecp-base:0.1.0
 
   build-cyng:
