@@ -16,15 +16,3 @@ RUN mkdir -p build/x64 && \
     cmake -DNODE_BUILD_TEST:BOOL=OFF -DNODE_CROSS_COMPILE:bool=OFF -DNODE_SSL_SUPPORT:BOOL=ON -DCRYPT_ROOT:PATH=/src/crypto -DCRYPT_BUILD=/src/crypto/build/x64 -DCMAKE_BUILD_TYPE=Release -DCMAKE_FIND_DEBUG_MODE=ON ../.. && \
     make -j4 all
     #make install
-
-
-#FROM ubuntu:bionic
-#
-#RUN apt-get update && \
-#	apt-get install -y  \
-#	libssl-dev  \
-#	unixodbc
-#
-#WORKDIR /opt
-#
-#COPY --from=build /src/node/build/x64/nodes ./

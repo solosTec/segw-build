@@ -32,6 +32,19 @@ jobs:
             - run: cd base-builder && docker build . -t seemann/cpp-build-base:0.1.0 --build-arg BOOST_VERSION=1.73.0 --build-arg BOOST_VERSION_NAME=1_73_0
             - run: docker push seemann/cpp-build-base:0.1.0
 
+  build-oecp-image:
+    machine: true
+    steps:
+      - run: echo "base check"
+      - when:
+          condition:
+            equal: [ base, <<pipeline.parameters.start_at>> ]
+          steps:
+            - checkout
+            - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
+            - run: cd oecp-builder && docker build . -t seemann/oecp-base:0.1.0 --build-arg BOOST_VERSION=1.73.0 --build-arg BOOST_VERSION_NAME=1_73_0
+            - run: docker push seemann/oecp-base:0.1.0
+
   build-cyng:
     machine: true
     steps:
@@ -103,6 +116,8 @@ workflows:
   build-and-push-on-commit:
     jobs:
       - build-base-image:
+          context: DOCKER_HUB
+      - build-oecp-image:
           context: DOCKER_HUB
       - build-cyng:
           context: DOCKER_HUB
