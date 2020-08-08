@@ -128,6 +128,23 @@ jobs:
             - run: cd node && docker build . -t seemann/node:0.1.0
             - run: docker push seemann/node:0.1.0
 
+  build-oecp-node:
+    machine: true
+    steps:
+      - run: echo "node check"
+      - when:
+          condition:
+            or:
+              - equal: [ base, <<pipeline.parameters.start_at>> ]
+              - equal: [ cyng, <<pipeline.parameters.start_at>> ]
+              - equal: [ crypto, <<pipeline.parameters.start_at>> ]
+              - equal: [ node, <<pipeline.parameters.start_at>> ]
+          steps:
+            - checkout
+            - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
+            - run: cd oecp-node && docker build . -t seemann/oecp-node:0.1.0
+            - run: docker push seemann/oecp-node:0.1.0
+
   build-master:
     machine: true
     steps:
@@ -174,6 +191,10 @@ workflows:
           context: DOCKER_HUB
           requires:
             - build-crypto
+      - build-oecp-node:
+          context: DOCKER_HUB
+          requires:
+            - build-oecp-crypto
       - build-master:
           context: DOCKER_HUB
           requires:
