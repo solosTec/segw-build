@@ -1,4 +1,7 @@
-FROM seemann/node:0.1.0 AS build
+ARG BASE_TAG
+ARG BRANCH
+
+FROM seemann/node:${BASE_TAG} AS build
 
 FROM ubuntu:bionic
 

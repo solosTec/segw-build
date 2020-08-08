@@ -1,8 +1,15 @@
-FROM seemann/oecp-cyng:0.1.0 AS build
+ARG BASE_TAG
+ARG BRANCH
+
+FROM seemann/oecp-cyng:${BASE_TAG} AS build
 
 WORKDIR /src
 
 RUN git clone https://github.com/solosTec/crypto
+
+WORKDIR /src/crypto/
+
+RUN git checkout ${BRANCH}
 
 WORKDIR /src/crypto/build
 

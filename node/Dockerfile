@@ -1,4 +1,7 @@
-FROM seemann/crypto:0.1.0 AS build
+ARG BASE_TAG
+ARG BRANCH
+
+FROM seemann/crypto:${BASE_TAG} AS build
 
 WORKDIR /src
 
@@ -6,7 +9,7 @@ RUN git clone https://github.com/solosTec/node && cd node
 
 WORKDIR /src/node
 
-RUN git checkout v0.8
+RUN git checkout ${BRANCH}
 
 # patch CMakeLists set compiler version to link against stdc++fs
 RUN find . -type f -name 'CMakeLists.txt' -exec sed -i 's/:8.2.1>/:8.4.0>/g' {} \;
