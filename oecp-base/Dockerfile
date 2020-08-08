@@ -4,15 +4,16 @@ RUN apt-get update && \
 	apt-get install -y  \
 	build-essential  \
 	apt-utils  \
-	git  \
-	cmake  \
-	autoconf  \
-	libtool  \
-	pkg-config  \
-	libssl-dev  \
+	git \
+	nano \
+	cmake \
+	autoconf \
+	libtool \
+	pkg-config \
+	libssl-dev \
 	libarchive-zip-perl \
-	wget  \
-	libreadline-dev  \
+	wget \
+	libreadline-dev \
 	lsb-release \
 	software-properties-common \
 	libncurses-dev \
@@ -20,7 +21,7 @@ RUN apt-get update && \
 	flex \
 	bison \
 	texlive-base \
-	texinfo  \
+	texinfo \
 	python-dev \
 	fakeroot
 
@@ -55,3 +56,14 @@ RUN wget https://dl.bintray.com/boostorg/release/${BOOST_VERSION}/source/boost_$
      sed -i 's/using gcc/using gcc : arm : arm-v5te-linux-gnueabi-c++/g'  project-config.jam && \
     ./b2 -j4 address-model=32 && \
     ./b2 install address-model=32
+
+# install cross compiled version of openssl
+WORKDIR /src
+
+RUN wget http://www.openssl.org/source/openssl-1.1.1d.tar.gz
+RUN tar -xvzf openssl-1.1.1d.tar.gz
+
+WORKDIR /src/openssl-1.1.1d
+RUN ./Configure linux-generic32 shared enable-ssl-trace --cross-compile-prefix=arm-v5te-linux-gnueabi- PROCESSOR=ARM
+RUN make
+RUN make install

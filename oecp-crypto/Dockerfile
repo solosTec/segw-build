@@ -10,6 +10,8 @@ RUN ./Configure linux-generic32 shared enable-ssl-trace --cross-compile-prefix=a
 RUN make
 RUN make install
 
+WORKDIR /src
+
 RUN git clone https://github.com/solosTec/crypto && cd crypto
 
 WORKDIR /src/crypto/cross

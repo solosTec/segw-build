@@ -1,18 +1,19 @@
 FROM ubuntu:bionic
 
 RUN apt-get update && \
-	apt-get install -y  \
-	build-essential  \
-	apt-utils  \
-	git  \
-	cmake  \
-	autoconf  \
-	libtool  \
-	pkg-config  \
-	libssl-dev  \
-	wget  \
-	libreadline-dev  \
-	lsb-release  \
+	apt-get install -y \
+	build-essential \
+	apt-utils \
+	git \
+	nano \
+	cmake \
+	autoconf \
+	libtool \
+	pkg-config \
+	libssl-dev \
+	wget \
+	libreadline-dev \
+	lsb-release \
 	unixodbc-dev
 
 
