@@ -7,7 +7,7 @@ set(CMAKE_SYSTEM_PROCESSOR arm)
 #
 # root path
 #
-SET(CROSS_ROOT $HOME/src/sysroot-target)
+SET(CROSS_ROOT /src/sysroot-target)
 set(CMAKE_ROOT_PATH ${CROSS_ROOT})
 set(CMAKE_FIND_ROOT_PATH ${CROSS_ROOT})
 

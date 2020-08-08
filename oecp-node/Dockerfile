@@ -15,6 +15,6 @@ WORKDIR /src/node/build
 
 ADD cross.cmake .
 
-RUN cmake -DNODE_BUILD_TEST:BOOL=OFF -DNODE_CROSS_COMPILE:bool=ON -DNODE_SSL_SUPPORT:BOOL=ON -DCRYPT_ROOT:PATH=/src/crypto -DCRYPT_BUILD=/src/crypto/build -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=cross.cmake  ../../.. && \
+RUN cmake -DNODE_BUILD_TEST:BOOL=OFF -DNODE_CROSS_COMPILE:bool=ON -DNODE_SSL_SUPPORT:BOOL=ON -DCRYPT_ROOT:PATH=/src/crypto -DCRYPT_BUILD=/src/crypto/build -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=cross.cmake  .. && \
     make -j4 all
     #make install
