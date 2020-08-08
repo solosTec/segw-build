@@ -8,7 +8,7 @@ RUN tar -xvzf openssl-1.1.1d.tar.gz
 WORKDIR /src/openssl-1.1.1d
 RUN ./Configure linux-generic32 shared enable-ssl-trace --cross-compile-prefix=arm-v5te-linux-gnueabi- PROCESSOR=ARM
 RUN make
-RUN install
+RUN make install
 
 RUN git clone https://github.com/solosTec/crypto && cd crypto
 
