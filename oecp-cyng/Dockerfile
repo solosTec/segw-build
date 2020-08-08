@@ -9,7 +9,7 @@ RUN git clone https://github.com/solosTec/cyng
 
 WORKDIR /src/cyng
 
-RUN git checkout ${BRANCH}
+RUN git checkout '${BRANCH}'
 
 RUN git submodule update --init --recursive
 
