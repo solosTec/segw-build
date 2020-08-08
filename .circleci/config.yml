@@ -108,7 +108,7 @@ jobs:
           steps:
             - checkout
             - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
-            - run: cd crypto && docker build . -t seemann/oecp-crypto:0.1.0
+            - run: cd oecp-crypto && docker build . -t seemann/oecp-crypto:0.1.0
             - run: docker push seemann/oecp-crypto:0.1.0
 
   build-node:

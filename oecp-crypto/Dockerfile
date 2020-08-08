@@ -1,5 +1,5 @@
 FROM seemann/oecp-cyng:0.1.0 AS build
-RUN cat /etc/environment
+
 WORKDIR /src
 
 RUN wget http://www.openssl.org/source/openssl-1.1.1d.tar.gz
@@ -22,4 +22,4 @@ RUN cd build/arm && \
     cmake -DCRYPT_BUILD_TEST:bool=OFF -DCMAKE_BUILD_TYPE=Debug -DCYNG_ROOT=/src/cyng -DCYNG_INCLUDE=/src/cyng/src/main/include -DCYNG_LIBRARY=/src/cyng/build -DCMAKE_TOOLCHAIN_FILE=cross.cmake ../../..  && \
     make && \
     make install
-RUN cat /etc/environment
+
