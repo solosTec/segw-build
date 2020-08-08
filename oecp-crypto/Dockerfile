@@ -2,25 +2,12 @@ FROM seemann/oecp-cyng:0.1.0 AS build
 
 WORKDIR /src
 
-RUN wget http://www.openssl.org/source/openssl-1.1.1d.tar.gz
-RUN tar -xvzf openssl-1.1.1d.tar.gz
+RUN git clone https://github.com/solosTec/crypto
 
-WORKDIR /src/openssl-1.1.1d
-RUN ./Configure linux-generic32 shared enable-ssl-trace --cross-compile-prefix=arm-v5te-linux-gnueabi- PROCESSOR=ARM
-RUN make
-RUN make install
+WORKDIR /src/crypto/build
 
-WORKDIR /src
+ADD cross.cmake .
 
-RUN git clone https://github.com/solosTec/crypto && cd crypto
-
-WORKDIR /src/crypto/cross
-
-RUN mkdir -p build/arm
-
-ADD cross.cmake build/arm/.
-
-RUN cd build/arm && \
-    cmake -DCRYPT_BUILD_TEST:bool=OFF -DCMAKE_BUILD_TYPE=Debug -DCYNG_ROOT=/src/cyng -DCYNG_INCLUDE=/src/cyng/src/main/include -DCYNG_LIBRARY=/src/cyng/build -DCMAKE_TOOLCHAIN_FILE=cross.cmake ../../..  && \
+RUN cmake -DCRYPT_BUILD_TEST:bool=OFF -DCMAKE_BUILD_TYPE=Debug -DCYNG_ROOT=/src/cyng -DCYNG_INCLUDE=/src/cyng/src/main/include -DCYNG_LIBRARY=/src/cyng/build -DCMAKE_TOOLCHAIN_FILE=cross.cmake ../../..  && \
     make && \
     make install

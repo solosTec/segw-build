@@ -2,7 +2,7 @@ FROM seemann/oecp-base:0.1.0 AS build
 
 WORKDIR /src
 
-RUN git clone https://github.com/solosTec/cyng && cd cyng
+RUN git clone https://github.com/solosTec/cyng
 
 WORKDIR /src/cyng
 
@@ -14,7 +14,7 @@ WORKDIR /src/cyng
 # patch CMakeLists avoid install error
 RUN sed -i 's/CyngConfigVersion.cmake/ConfigVersion.cmake/g' CMakeLists.txt
 
-WORKDIR /src/cyng/cross
+WORKDIR /src/cyng/build
 
 ADD cross.cmake .
 
