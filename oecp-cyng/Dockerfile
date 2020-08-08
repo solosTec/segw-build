@@ -1,7 +1,7 @@
 ARG BASE_TAG
-ARG BRANCH
-
 FROM seemann/oecp-base:${BASE_TAG} AS build
+
+ARG BRANCH
 
 WORKDIR /src
 
@@ -9,7 +9,7 @@ RUN git clone https://github.com/solosTec/cyng
 
 WORKDIR /src/cyng
 
-RUN git checkout '${BRANCH}'
+RUN git checkout ${BRANCH}
 
 RUN git submodule update --init --recursive
 

@@ -160,7 +160,7 @@ jobs:
           steps:
             - checkout
             - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
-            - run: cd master && docker build . -t seemann/master:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>> --build-arg BRANCH=<<pipeline.parameters.branch>>
+            - run: cd master && docker build . -t seemann/master:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>>
             - run: docker push seemann/master:<<pipeline.parameters.branch>>
 
 workflows:

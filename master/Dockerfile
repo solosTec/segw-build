@@ -1,6 +1,4 @@
 ARG BASE_TAG
-ARG BRANCH
-
 FROM seemann/node:${BASE_TAG} AS build
 
 FROM ubuntu:bionic

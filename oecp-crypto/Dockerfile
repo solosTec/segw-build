@@ -1,7 +1,7 @@
 ARG BASE_TAG
-ARG BRANCH
-
 FROM seemann/oecp-cyng:${BASE_TAG} AS build
+
+ARG BRANCH
 
 WORKDIR /src
 

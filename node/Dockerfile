@@ -1,7 +1,7 @@
 ARG BASE_TAG
-ARG BRANCH
-
 FROM seemann/crypto:${BASE_TAG} AS build
+
+ARG BRANCH
 
 WORKDIR /src
 
