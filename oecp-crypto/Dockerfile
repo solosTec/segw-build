@@ -6,7 +6,7 @@ RUN wget http://www.openssl.org/source/openssl-1.1.1d.tar.gz
 RUN tar -xvzf openssl-1.1.1d.tar.gz
 
 WORKDIR /src/openssl-1.1.1d
-RUN m
+RUN ./Configure linux-generic32 shared enable-ssl-trace --cross-compile-prefix=arm-v5te-linux-gnueabi- PROCESSOR=ARM
 RUN make
 RUN install
 
@@ -22,4 +22,3 @@ RUN cd build/arm && \
     cmake -DCRYPT_BUILD_TEST:bool=OFF -DCMAKE_BUILD_TYPE=Debug -DCYNG_ROOT=/src/cyng -DCYNG_INCLUDE=/src/cyng/src/main/include -DCYNG_LIBRARY=/src/cyng/build -DCMAKE_TOOLCHAIN_FILE=cross.cmake ../../..  && \
     make && \
     make install
-
