@@ -13,7 +13,7 @@ docker run --rm -it seemann/oecp-node:v0.8 bash
 ```
 
 docker pull seemann/oecp-dist:v0.8
-docker create -name oecp-dist seemann/oecp-dist:v0.8 
+docker create --name oecp-dist seemann/oecp-dist:v0.8 
 docker cp oecp-dist:/dist/node_0.8.2222_armel.ipk .
 docker rm oecp-dist
 
