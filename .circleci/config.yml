@@ -3,7 +3,7 @@ version: 2.1
 parameters:
   start_at:
     type: string
-    default: node
+    default: dist
   branch:
     type: string
     default: v0.8
@@ -145,10 +145,28 @@ jobs:
             - run: docker build -f oecp-node/Dockerfile . -t seemann/oecp-node:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>> --build-arg BRANCH=<<pipeline.parameters.branch>>
             - run: docker push seemann/oecp-node:<<pipeline.parameters.branch>>
 
-  build-master:
+  build-oecp-dist:
+    machine: true
+      steps:
+          - run: echo "dist check"
+            - when:
+                condition:
+                  or:
+                    - equal: [ base, <<pipeline.parameters.start_at>> ]
+                    - equal: [ cyng, <<pipeline.parameters.start_at>> ]
+                    - equal: [ crypto, <<pipeline.parameters.start_at>> ]
+                    - equal: [ node, <<pipeline.parameters.start_at>> ]
+                    - equal: [ dist, <<pipeline.parameters.start_at>> ]
+                steps:
+                  - checkout
+                  - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
+                  - run: docker build -f oecp-dist/Dockerfile . -t seemann/oecp-dist:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>>
+                  - run: docker push seemann/oecp-dist:<<pipeline.parameters.branch>>
+
+  build-dist:
     machine: true
     steps:
-      - run: echo "master check"
+      - run: echo "dist check"
       - when:
           condition:
             or:
@@ -156,7 +174,7 @@ jobs:
               - equal: [ cyng, <<pipeline.parameters.start_at>> ]
               - equal: [ crypto, <<pipeline.parameters.start_at>> ]
               - equal: [ node, <<pipeline.parameters.start_at>> ]
-              - equal: [ master, <<pipeline.parameters.start_at>> ]
+              - equal: [ dist, <<pipeline.parameters.start_at>> ]
           steps:
             - checkout
             - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
@@ -195,7 +213,11 @@ workflows:
           context: DOCKER_HUB
           requires:
             - build-oecp-crypto
-#      - build-master:
+      - build-oecp-dist:
+          context: DOCKER_HUB
+          requires:
+            - build-oecp-node
+#      - build-dist:
 #          context: DOCKER_HUB
 #          requires:
 #            - build-node
