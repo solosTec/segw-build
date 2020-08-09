@@ -3,7 +3,7 @@ version: 2.1
 parameters:
   start_at:
     type: string
-    default: cyng
+    default: crypto
   branch:
     type: string
     default: v0.8
@@ -108,7 +108,7 @@ jobs:
           steps:
             - checkout
             - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
-            - run: docker build -f oecp-crypto /Dockerfile . -t seemann/oecp-crypto:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>> --build-arg BRANCH=master
+            - run: docker build -f oecp-crypto/Dockerfile . -t seemann/oecp-crypto:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>> --build-arg BRANCH=master
             - run: docker push seemann/oecp-crypto:<<pipeline.parameters.branch>>
 
   build-node:
