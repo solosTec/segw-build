@@ -10,7 +10,7 @@ RUN apt-get update && \
 	autoconf \
 	libtool \
 	pkg-config \
-	libssl-dev \
+#	libssl-dev \ will be buld from source later
 	libarchive-zip-perl \
 	wget \
 	libreadline-dev \
@@ -29,6 +29,7 @@ RUN apt-get update && \
 RUN apt-get install -y gcc-8 g++-8
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 700 --slave /usr/bin/g++ g++ /usr/bin/g++-7
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 800 --slave /usr/bin/g++ g++ /usr/bin/g++-8
+RUN apt-get install -y gcc-8-multilib g++-8-multilib
 
 # gcc 8 should now be the default one
 RUN gcc  --version
@@ -39,6 +40,7 @@ RUN dpkg -i pengutronix-archive-keyring_2020.02.11_all.deb
 RUN add-apt-repository "deb http://debian.pengutronix.de/debian/ bionic main contrib non-free"
 RUN apt-get update
 RUN apt-get install -y oselas.toolchain-2018.12.0-arm-v5te-linux-gnueabi-gcc-8.2.1-glibc-2.28-binutils-2.31.1-kernel-4.19-sanitized
+
 # extend the PATH variable with toolchain location
 ENV PATH="${PATH}:/opt/OSELAS.Toolchain-2018.12.0/arm-v5te-linux-gnueabi/gcc-8.2.1-glibc-2.28-binutils-2.31.1-kernel-4.19-sanitized/bin/"
 RUN echo "export PATH=$PATH" > /etc/environment
@@ -47,7 +49,7 @@ RUN echo "export PATH=$PATH" > /etc/environment
 ARG BOOST_VERSION=1.73.0
 ARG BOOST_VERSION_NAME=1_73_0
 
-RUN apt-get install -y gcc-8-multilib g++-8-multilib
+WORKDIR /src
 
 RUN wget https://dl.bintray.com/boostorg/release/${BOOST_VERSION}/source/boost_${BOOST_VERSION_NAME}.tar.bz2 && \
     tar xjvf boost_${BOOST_VERSION_NAME}.tar.bz2 && \
@@ -58,8 +60,6 @@ RUN wget https://dl.bintray.com/boostorg/release/${BOOST_VERSION}/source/boost_$
     ./b2 install address-model=32
 
 # install cross compiled version of openssl
-WORKDIR /src
-
 RUN wget http://www.openssl.org/source/openssl-1.1.1d.tar.gz
 RUN tar -xvzf openssl-1.1.1d.tar.gz
 
