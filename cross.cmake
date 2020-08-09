@@ -45,10 +45,10 @@ link_directories(
 #
 # OpenSSL support
 #
-#set(OPENSSL_ROOT_DIR  $ENV{HOME}/projects/install/openssl)
-#set(OPENSSL_INCLUDE_DIR ${OPENSSL_ROOT_DIR}/include)
-#set(OPENSSL_CRYPTO_LIBRARY ${OPENSSL_ROOT_DIR}/lib/libcrypto.so)
-#set(OPENSLL_LIBRARY ${OPENSSL_ROOT_DIR}/lib/lbssl.so)
+set(OPENSSL_ROOT_DIR  /src/openssl-1.1.1d)
+set(OPENSSL_INCLUDE_DIR ${OPENSSL_ROOT_DIR}/include)
+set(OPENSSL_CRYPTO_LIBRARY ${OPENSSL_ROOT_DIR}/libcrypto.so)
+set(OPENSLL_LIBRARY ${OPENSSL_ROOT_DIR}/lbssl.so)
 
 #
 # Use our definitions for compiler tools
