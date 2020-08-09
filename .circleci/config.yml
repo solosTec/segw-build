@@ -3,7 +3,7 @@ version: 2.1
 parameters:
   start_at:
     type: string
-    default: base
+    default: node
   branch:
     type: string
     default: v0.8
@@ -195,7 +195,7 @@ workflows:
           context: DOCKER_HUB
           requires:
             - build-oecp-crypto
-      - build-master:
-          context: DOCKER_HUB
-          requires:
-            - build-node
+#      - build-master:
+#          context: DOCKER_HUB
+#          requires:
+#            - build-node
