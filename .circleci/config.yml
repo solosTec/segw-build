@@ -33,7 +33,7 @@ jobs:
           steps:
             - checkout
             - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
-            - run: cd base-builder && docker build . -t seemann/cpp-build-base:<<pipeline.parameters.branch>> --build-arg BOOST_VERSION=1.73.0 --build-arg BOOST_VERSION_NAME=1_73_0
+            - run: docker build -f base-builder/Dockerfile . -t seemann/cpp-build-base:<<pipeline.parameters.branch>> --build-arg BOOST_VERSION=1.73.0 --build-arg BOOST_VERSION_NAME=1_73_0
             - run: docker push seemann/cpp-build-base:<<pipeline.parameters.branch>>
 
   build-oecp-image:
@@ -46,7 +46,7 @@ jobs:
           steps:
             - checkout
             - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
-            - run: cd oecp-base && docker build . -t seemann/oecp-base:<<pipeline.parameters.branch>> --build-arg BOOST_VERSION=1.73.0 --build-arg BOOST_VERSION_NAME=1_73_0
+            - run: docker build -f oecp-base/Dockerfile . -t seemann/oecp-base:<<pipeline.parameters.branch>> --build-arg BOOST_VERSION=1.73.0 --build-arg BOOST_VERSION_NAME=1_73_0
             - run: docker push seemann/oecp-base:<<pipeline.parameters.branch>>
 
   build-cyng:
@@ -61,7 +61,7 @@ jobs:
           steps:
             - checkout
             - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
-            - run: cd cyng && docker build . -t seemann/cyng:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>> --build-arg BRANCH=<<pipeline.parameters.branch>>
+            - run: docker build -f cyng/Dockerfile . -t seemann/cyng:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>> --build-arg BRANCH=<<pipeline.parameters.branch>>
             - run: docker push seemann/cyng:<<pipeline.parameters.branch>>
 
   build-oecp-cyng:
@@ -76,7 +76,7 @@ jobs:
           steps:
             - checkout
             - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
-            - run: cd oecp-cyng && docker build . -t seemann/oecp-cyng:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>> --build-arg BRANCH=<<pipeline.parameters.branch>>
+            - run: docker -f oecp-cyng/Dockerfile build . -t seemann/oecp-cyng:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>> --build-arg BRANCH=<<pipeline.parameters.branch>>
             - run: docker push seemann/oecp-cyng:<<pipeline.parameters.branch>>
 
   build-crypto:
@@ -92,7 +92,7 @@ jobs:
           steps:
             - checkout
             - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
-            - run: cd crypto && docker build . -t seemann/crypto:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>> --build-arg BRANCH=master
+            - run: docker build -f crypto/Dockerfile . -t seemann/crypto:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>> --build-arg BRANCH=master
             - run: docker push seemann/crypto:<<pipeline.parameters.branch>>
 
   build-oecp-crypto:
@@ -108,7 +108,7 @@ jobs:
           steps:
             - checkout
             - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
-            - run: cd oecp-crypto && docker build . -t seemann/oecp-crypto:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>> --build-arg BRANCH=master
+            - run: docker build -f oecp-crypto /Dockerfile . -t seemann/oecp-crypto:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>> --build-arg BRANCH=master
             - run: docker push seemann/oecp-crypto:<<pipeline.parameters.branch>>
 
   build-node:
@@ -125,7 +125,7 @@ jobs:
           steps:
             - checkout
             - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
-            - run: cd node && docker build . -t seemann/node:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>> --build-arg BRANCH=<<pipeline.parameters.branch>>
+            - run: docker build -f node/Dockerfile . -t seemann/node:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>> --build-arg BRANCH=<<pipeline.parameters.branch>>
             - run: docker push seemann/node:<<pipeline.parameters.branch>>
 
   build-oecp-node:
@@ -142,7 +142,7 @@ jobs:
           steps:
             - checkout
             - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
-            - run: cd oecp-node && docker build . -t seemann/oecp-node:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>> --build-arg BRANCH=<<pipeline.parameters.branch>>
+            - run: docker build -f oecp-node/Dockerfile . -t seemann/oecp-node:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>> --build-arg BRANCH=<<pipeline.parameters.branch>>
             - run: docker push seemann/oecp-node:<<pipeline.parameters.branch>>
 
   build-master:
@@ -160,7 +160,7 @@ jobs:
           steps:
             - checkout
             - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
-            - run: cd master && docker build . -t seemann/master:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>>
+            - run: docker build -f master/Dockerfile . -t seemann/master:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>>
             - run: docker push seemann/master:<<pipeline.parameters.branch>>
 
 workflows:
