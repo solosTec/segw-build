@@ -147,21 +147,21 @@ jobs:
 
   build-oecp-dist:
     machine: true
-      steps:
-          - run: echo "dist check"
-            - when:
-                condition:
-                  or:
-                    - equal: [ base, <<pipeline.parameters.start_at>> ]
-                    - equal: [ cyng, <<pipeline.parameters.start_at>> ]
-                    - equal: [ crypto, <<pipeline.parameters.start_at>> ]
-                    - equal: [ node, <<pipeline.parameters.start_at>> ]
-                    - equal: [ dist, <<pipeline.parameters.start_at>> ]
-                steps:
-                  - checkout
-                  - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
-                  - run: docker build -f oecp-dist/Dockerfile . -t seemann/oecp-dist:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>>
-                  - run: docker push seemann/oecp-dist:<<pipeline.parameters.branch>>
+    steps:
+      - run: echo "dist check"
+      - when:
+          condition:
+            or:
+              - equal: [ base, <<pipeline.parameters.start_at>> ]
+              - equal: [ cyng, <<pipeline.parameters.start_at>> ]
+              - equal: [ crypto, <<pipeline.parameters.start_at>> ]
+              - equal: [ node, <<pipeline.parameters.start_at>> ]
+              - equal: [ dist, <<pipeline.parameters.start_at>> ]
+          steps:
+            - checkout
+            - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
+            - run: docker build -f oecp-dist/Dockerfile . -t seemann/oecp-dist:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>>
+            - run: docker push seemann/oecp-dist:<<pipeline.parameters.branch>>
 
   build-dist:
     machine: true
