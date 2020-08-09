@@ -3,7 +3,7 @@ version: 2.1
 parameters:
   start_at:
     type: string
-    default: base
+    default: cyng
   branch:
     type: string
     default: v0.8
@@ -76,7 +76,7 @@ jobs:
           steps:
             - checkout
             - run: echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_USERNAME --password-stdin
-            - run: docker -f oecp-cyng/Dockerfile build . -t seemann/oecp-cyng:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>> --build-arg BRANCH=<<pipeline.parameters.branch>>
+            - run: docker build -f oecp-cyng/Dockerfile . -t seemann/oecp-cyng:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>> --build-arg BRANCH=<<pipeline.parameters.branch>>
             - run: docker push seemann/oecp-cyng:<<pipeline.parameters.branch>>
 
   build-crypto:
