@@ -1,5 +1,12 @@
 FROM ubuntu:bionic
 
+#install a current version of cmake
+RUN wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
+RUN sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
+RUN sudo apt update
+RUN sudo apt install cmake
+RUN cmake --version
+
 RUN apt-get update && \
 	apt-get install -y \
 	build-essential \
@@ -24,12 +31,6 @@ RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 800 --slave /u
 # gcc 8 should now be the default one
 RUN gcc --version
 
-#install a current version of cmake
-RUN wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
-RUN sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
-RUN sudo apt update
-RUN sudo apt install cmake
-RUN cmake --version
 
 # install the boost version - version can be overriden by --build-args
 ARG BOOST_VERSION=1.73.0
