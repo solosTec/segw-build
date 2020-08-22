@@ -9,8 +9,9 @@ RUN apt-get update && \
 
 WORKDIR /app
 
+COPY --from=build /src/cyng/build/*.deb ./
 COPY --from=build /src/node/build/x64/*.deb ./
 
-RUN dpkg -i *.deb
+#RUN dpkg -i *.deb
 
-RUN rm *.deb
+#RUN rm *.deb
