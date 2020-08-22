@@ -15,13 +15,13 @@ jobs:
       image: alpine
     steps:
       - name: Extract branch name
-        shell: bash
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        run: | 
+          apk add bash
+          echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
         id: extract_branch
       - name: Start complete build
         run: |
-          apk ^add curl
+          apk add curl
           apk add bash
-          echo ${{ steps.extract_branch.outputs.branch }}
-          echo '{"branch":"master", "start_at": "${{ github.event.inputs.start_at }}"}'
+          echo '{"branch":"${{ steps.extract_branch.outputs.branch }}", "start_at": "${{ github.event.inputs.start_at }}"}'
           curl -u ${{secrets.GITHUB2CIRCLECITOKEN}}: -X POST https://circleci.com/api/v2/project/gh/mseemann/segw-build/pipeline --header "Content-Type: application/json" -d '{ "parameters": { "start_at": "${{ github.event.inputs.start_at }}"}}'
