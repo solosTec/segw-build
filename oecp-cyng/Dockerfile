@@ -14,8 +14,6 @@ RUN git checkout ${BRANCH}
 RUN git submodule update --init --recursive
 
 WORKDIR /src/cyng
-# patch CMakeLists avoid install error
-RUN sed -i 's/CyngConfigVersion.cmake/ConfigVersion.cmake/g' CMakeLists.txt
 
 WORKDIR /src/cyng/build
 

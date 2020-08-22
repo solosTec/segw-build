@@ -13,9 +13,6 @@ RUN git checkout ${BRANCH}
 
 RUN git submodule update --init --recursive
 
-# patch CMakeLists avoid install error
-RUN sed -i 's/CyngConfigVersion.cmake/ConfigVersion.cmake/g' CMakeLists.txt
-
 RUN mkdir -p build && \
     cd build &&  \
     cmake -DCMAKE_BUILD_TYPE=Release ..  &&  \

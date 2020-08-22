@@ -11,9 +11,6 @@ WORKDIR /src/node
 
 RUN git checkout ${BRANCH}
 
-# patch CMakeLists set compiler version to link against stdc++fs
-RUN find . -type f -name 'CMakeLists.txt' -exec sed -i 's/:8.2.1>/:8.4.0>/g' {} \;
-
 WORKDIR /src/node/build
 
 ADD cross.cmake .
