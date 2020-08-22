@@ -21,9 +21,9 @@ RUN apt-get update && \
 #install a current version of cmake
 RUN apt purge --auto-remove cmake
 RUN wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
-RUN sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
-RUN sudo apt update
-RUN sudo apt install cmake
+RUN apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
+RUN apt update
+RUN apt install cmake
 RUN cmake --version
 
 #https://askubuntu.com/questions/1028601/install-gcc-8-only-on-ubuntu-18-04

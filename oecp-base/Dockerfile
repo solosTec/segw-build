@@ -6,7 +6,6 @@ RUN apt-get update && \
 	apt-utils  \
 	git \
 	nano \
-	cmake \
 	autoconf \
 	libtool \
 	pkg-config \
@@ -23,7 +22,16 @@ RUN apt-get update && \
 	texlive-base \
 	texinfo \
 	python-dev \
-	fakeroot
+	fakeroot \
+	gpg
+
+#install a current version of cmake
+RUN apt purge --auto-remove cmake
+RUN wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
+RUN apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
+RUN apt update
+RUN apt install cmake
+RUN cmake --version
 
 #https://askubuntu.com/questions/1028601/install-gcc-8-only-on-ubuntu-18-04
 RUN apt-get install -y gcc-8 g++-8
