@@ -38,7 +38,7 @@ jobs:
           steps:
             - checkout
             - docker-login
-            - run: docker build -f base-builder/Dockerfile . -t seemann/cpp-build-base:<<pipeline.parameters.branch>> --build-arg BOOST_VERSION=1.73.0 --build-arg BOOST_VERSION_NAME=1_73_0
+            - run: docker build -f base-builder/Dockerfile . -t seemann/cpp-build-base:<<pipeline.parameters.branch>> --build-arg BOOST_VERSION=1.74.0 --build-arg BOOST_VERSION_NAME=1_74_0
             - run: docker push seemann/cpp-build-base:<<pipeline.parameters.branch>>
 
   build-oecp-image:
@@ -51,7 +51,7 @@ jobs:
           steps:
             - checkout
             - docker-login
-            - run: docker build -f oecp-base/Dockerfile . -t seemann/oecp-base:<<pipeline.parameters.branch>> --build-arg BOOST_VERSION=1.73.0 --build-arg BOOST_VERSION_NAME=1_73_0
+            - run: docker build -f oecp-base/Dockerfile . -t seemann/oecp-base:<<pipeline.parameters.branch>> --build-arg BOOST_VERSION=1.74.0 --build-arg BOOST_VERSION_NAME=1_74_0
             - run: docker push seemann/oecp-base:<<pipeline.parameters.branch>>
 
   build-cyng:

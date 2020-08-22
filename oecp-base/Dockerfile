@@ -60,10 +60,10 @@ RUN wget https://dl.bintray.com/boostorg/release/${BOOST_VERSION}/source/boost_$
     ./b2 install address-model=32
 
 # install cross compiled version of openssl
-RUN wget http://www.openssl.org/source/openssl-1.1.1d.tar.gz
-RUN tar -xvzf openssl-1.1.1d.tar.gz
+RUN wget http://www.openssl.org/source/openssl-1.1.1g.tar.gz
+RUN tar -xvzf openssl-1.1.1g.tar.gz
 
-WORKDIR /src/openssl-1.1.1d
+WORKDIR /src/openssl-1.1.1g
 RUN ./Configure linux-generic32 shared enable-ssl-trace --cross-compile-prefix=arm-v5te-linux-gnueabi- PROCESSOR=ARM
 RUN make
 RUN make install

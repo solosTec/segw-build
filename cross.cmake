@@ -45,7 +45,7 @@ set(BOOST_LIBRARYDIR "${BOOST_ROOT}/lib" CACHE PATH "BOOST_LIBRARYDIR")
 #
 # OpenSSL support
 #
-set(OPENSSL_ROOT_DIR  /src/openssl-1.1.1d)
+set(OPENSSL_ROOT_DIR  /src/openssl-1.1.1g)
 set(OPENSSL_INCLUDE_DIR ${OPENSSL_ROOT_DIR}/include)
 set(OPENSSL_CRYPTO_LIBRARY ${OPENSSL_ROOT_DIR}/libcrypto.so)
 set(OPENSLL_LIBRARY ${OPENSSL_ROOT_DIR}/lbssl.so)
