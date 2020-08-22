@@ -11,17 +11,16 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container:
-      image: alpine
+#    container:
+#      image: alpine
     steps:
       - name: Extract branch name
-        run: | 
-          apk add bash
+        shell: bash
+        run: |
           echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
         id: extract_branch
       - name: Start complete build
+        shell: bash
         run: |
-          apk add curl
-          apk add bash
-          echo '{"branch":"${{ steps.extract_branch.outputs.branch }}", "start_at": "${{ github.event.inputs.start_at }}"}'
-          curl -u ${{secrets.GITHUB2CIRCLECITOKEN}}: -X POST https://circleci.com/api/v2/project/gh/mseemann/segw-build/pipeline --header "Content-Type: application/json" -d '{ "parameters": { "start_at": "${{ github.event.inputs.start_at }}"}}'
+          echo '{"branch":"${{ steps.extract_branch.outputs.branch }}", "start_at":"${{ github.event.inputs.start_at }}"}'
+          curl -u ${{secrets.GITHUB2CIRCLECITOKEN}}: -X POST https://circleci.com/api/v2/project/gh/mseemann/segw-build/pipeline --header "Content-Type: application/json" -d '{ "parameters": { "start_at":"${{ github.event.inputs.start_at }}"}}'
