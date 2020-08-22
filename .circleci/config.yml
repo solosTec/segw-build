@@ -222,7 +222,7 @@ workflows:
           context: DOCKER_HUB
           requires:
             - build-oecp-node
-#      - build-dist:
-#          context: DOCKER_HUB
-#          requires:
-#            - build-node
+      - build-dist:
+          context: DOCKER_HUB
+          requires:
+            - build-node
