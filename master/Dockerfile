@@ -11,6 +11,6 @@ WORKDIR /app
 
 COPY --from=build /src/node/build/x64/*.deb ./
 
-#RUN apt install -y *.deb
+RUN dpkg -i *.deb
 
-#RUN rm *.deb
+RUN rm *.deb
