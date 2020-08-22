@@ -9,7 +9,6 @@ RUN apt-get update && \
 	autoconf \
 	libtool \
 	pkg-config \
-#	libssl-dev \ will be buld from source later
 	libarchive-zip-perl \
 	wget \
 	libreadline-dev \
@@ -30,7 +29,7 @@ RUN apt purge --auto-remove cmake
 RUN wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
 RUN apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
 RUN apt update
-RUN apt install cmake
+RUN apt install -y cmake
 RUN cmake --version
 
 #https://askubuntu.com/questions/1028601/install-gcc-8-only-on-ubuntu-18-04
