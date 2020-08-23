@@ -29,6 +29,7 @@ jobs:
 
   build-base-image:
     machine: true
+    resource_class: large
     steps:
       - run: echo "base check"
       - run: echo "<<pipeline.parameters.branch>>"
@@ -43,6 +44,7 @@ jobs:
 
   build-oecp-image:
     machine: true
+    resource_class: large
     steps:
       - run: echo "base check"
       - when:
