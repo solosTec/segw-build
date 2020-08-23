@@ -26,3 +26,8 @@ RUN dpkg -i *.deb  && \
 WORKDIR /app/dash
 
 COPY --from=dash /app .
+# remove smf-dev path - the app runs on / if dash is used
+RUN sed -i 's/\/smf-dev//g'  index.html
+
+# ensure the working directory is config so the configs can be loaded by node
+WORKDIR /configs

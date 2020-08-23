@@ -183,8 +183,8 @@ jobs:
           steps:
             - checkout
             - docker-login
-            - run: docker build -f master/Dockerfile . -t seemann/master:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>>
-            - run: docker push seemann/master:<<pipeline.parameters.branch>>
+            - run: docker build -f smf-dist/Dockerfile . -t seemann/smf-dist:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>>
+            - run: docker push seemann/smf-dist:<<pipeline.parameters.branch>>
 
 workflows:
   version: 2
