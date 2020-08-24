@@ -37,8 +37,8 @@ RUN gcc --version
 
 
 # install the boost version - version can be overriden by --build-args
-ARG BOOST_VERSION=1.73.0
-ARG BOOST_VERSION_NAME=1_73_0
+ARG BOOST_VERSION=1.74.0
+ARG BOOST_VERSION_NAME=1_74_0
 
 RUN wget https://dl.bintray.com/boostorg/release/${BOOST_VERSION}/source/boost_${BOOST_VERSION_NAME}.tar.bz2 && \
     tar xjvf boost_${BOOST_VERSION_NAME}.tar.bz2 && \
