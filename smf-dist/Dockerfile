@@ -25,9 +25,7 @@ RUN dpkg -i *.deb  && \
 # Frontend installation
 WORKDIR /app/dash
 
-COPY --from=dash /app .
-# remove smf-dev path - the app runs on / if dash is used
-RUN sed -i 's/\/smf-dev//g'  index.html
+COPY --from=dash /app/dist-no-auth .
 
 # ensure the working directory is config so the configs can be loaded by node
 WORKDIR /configs
