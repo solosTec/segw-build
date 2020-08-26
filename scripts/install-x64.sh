@@ -102,6 +102,7 @@ else
     echo "cyng already configured"
 fi
 
+cd build/x64 && \
     make -j4 all &&  \
     make install
 }
@@ -147,6 +148,7 @@ else
 	echo "node already cloned"
 fi
 
+cd node
 if [ ! -d build/x64 ]; then
     echo "Configure node"
     mkdir -p build/x64 && \
@@ -224,5 +226,7 @@ install_node
 #
 # (8) extract amrd/segw artifact from node/build/nodes/ipt/segw
 #
+
+echo "executable: ${WORKPATH}/node/build/x64/nodes/ipt/segw/segw"
 
 

@@ -67,14 +67,12 @@ link_directories(
 #
 # Boost support
 #
-set(BOOST_ROOT  $ENV{WORKPATH}/install/v5te/boost)
 set(BOOST_INCLUDEDIR "${BOOST_ROOT}/include" CACHE PATH "BOOST_INCLUDEDIR")
 set(BOOST_LIBRARYDIR "${BOOST_ROOT}/lib" CACHE PATH "BOOST_LIBRARYDIR")
 
 #
 # OpenSSL support
 #
-set(OPENSSL_ROOT_DIR  $ENV{WORKPATH}/install/v5te/openssl)    
 set(OPENSSL_INCLUDE_DIR ${OPENSSL_ROOT_DIR}/include)
 set(OPENSSL_CRYPTO_LIBRARY ${OPENSSL_ROOT_DIR}/lib/libcrypto.so)
 set(OPENSLL_LIBRARY ${OPENSSL_ROOT_DIR}/lib/lbssl.so)

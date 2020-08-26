@@ -6,6 +6,9 @@ CURRENTDIR=$(pwd)
 #echo "OWNPATH: $OWNPATH"
 #echo "CURRENTDIR: $CURRENTDIR"
 
+CROSSCMAKEFILE=$OWNPATH/cross.cmake
+OPKGTOOLS=$OWNPATH/opkg-tools
+
 WORKPATH="$1"
 if [ -z "${WORKPATH}" ]; then
 	WORKPATH=${HOME}
@@ -16,6 +19,8 @@ echo "\${WORKPATH}: ${WORKPATH}"
 if [[ ! "$WORKPATH" =~ ^(\/).*  ]]; then
 	echo "use absolute paths" 
 	WORKPATH=${CURRENTDIR}/${WORKPATH}
+	CROSSCMAKEFILE=${CURRENTDIR}/${CROSSCMAKEFILE}
+	OPKGTOOLS=${CURRENTDIR}/${OPKGTOOLS}
 fi
 
 echo "\${WORKPATH}: ${WORKPATH}"
@@ -102,14 +107,15 @@ if [ ! -d  cyng ]; then
     git clone https://github.com/solosTec/cyng && cd cyng
     git checkout $CYNG_VERSION
     git submodule update --init --recursive
+	cd ..
 else
 	echo "cyng already cloned"
 fi
-
+cd cyng
 if [ ! -d build/v5te ]; then
     mkdir -p build/v5te && \
     cd build/v5te &&  \
-    cmake -DCMAKE_INSTALL_PREFIX:PATH=$WORKPATH/install/v5te/cyng -DBOOST_ROOT:PATH=$WORKPATH/install/v5te/boost -DBOOST_LIBRARYDIR:PATH=$WORKPATH/install/v5te/boost/lib -DBOOST_INCLUDEDIR:PATH=$WORKPATH/install/v5te/boost/include -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=$WORKPATH/cross.cmake ../..  
+    cmake -DCMAKE_INSTALL_PREFIX:PATH=$WORKPATH/install/v5te/cyng -DBOOST_ROOT:PATH=$WORKPATH/install/v5te/boost -DBOOST_LIBRARYDIR:PATH=$WORKPATH/install/v5te/boost/lib -DBOOST_INCLUDEDIR:PATH=$WORKPATH/install/v5te/boost/include -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=${CROSSCMAKEFILE} ../..  
     cd ../..
 fi
 
@@ -134,7 +140,11 @@ if [ ! -d build/v5te ]; then
     echo "Configure crypto"
     mkdir -p build/v5te
     cd build/v5te && \
-    cmake -DCMAKE_INSTALL_PREFIX:PATH=$WORKPATH/install/v5te/crypto -DCRYPT_BUILD_TEST:bool=OFF -DCMAKE_BUILD_TYPE=Release -DCYNG_ROOT=$WORKPATH/cyng -DCYNG_INCLUDE=$WORKPATH/cyng/src/main/include -DCYNG_LIBRARY=$WORKPATH/cyng/build/v5te -DOPENSSL_ROOT_DIR:PATH=$WORKPATH/install/v5te/openssl -DOPENSSL_SSL_LIBRARY:FILEPATH=$WORKPATH/install/v5te/lib/libssl.so -DCMAKE_TOOLCHAIN_FILE=$WORKPATH/cross.cmake ../.. 
+    cmake -DCMAKE_INSTALL_PREFIX:PATH=$WORKPATH/install/v5te/crypto \
+          -DCRYPT_BUILD_TEST:bool=OFF -DCMAKE_BUILD_TYPE=Release \
+          -DCYNG_ROOT=$WORKPATH/cyng -DCYNG_INCLUDE=$WORKPATH/cyng/src/main/include -DCYNG_LIBRARY=$WORKPATH/cyng/build/v5te \
+          -DOPENSSL_ROOT_DIR:PATH=$WORKPATH/install/v5te/openssl \
+          -DCMAKE_TOOLCHAIN_FILE=${CROSSCMAKEFILE} ../.. 
     cd ../..
 else
 	echo "crypto already configured"
@@ -153,6 +163,7 @@ if [ ! -d  node ]; then
     echo "Clone node"
     git clone https://github.com/solosTec/node && cd node
     git checkout $NODE_VERSION
+	cd ..
 else
 	echo "node already cloned"
 fi
@@ -163,7 +174,7 @@ if [ ! -d build/v5te ]; then
 
     mkdir -p build/v5te && \
     cd build/v5te && \
-    cmake -DCMAKE_INSTALL_PREFIX:PATH=$WORKPATH/install/v5te/node -DOPENSSL_ROOT_DIR:PATH=$WORKPATH/install/v5te/openssl -DBOOST_ROOT:PATH=$WORKPATH/install/v5te/boost -DNODE_BUILD_TEST:BOOL=OFF -DNODE_CROSS_COMPILE:bool=ON -DNODE_SSL_SUPPORT:BOOL=ON -DCYNG_ROOT_DEV:PATH=$WORKPATH/cyng -DCYNG_ROOT_BUILD_SUBDIR:STRING=build/v5te -DCRYPT_ROOT:PATH=$WORKPATH/crypto -DCRYPT_BUILD:PATH=$WORKPATH/crypto/build/v5te -DCMAKE_BUILD_TYPE=Release -DCMAKE_FIND_DEBUG_MODE=ON -DCMAKE_TOOLCHAIN_FILE=$WORKPATH/cross.cmake ../.. 
+    cmake -DCMAKE_INSTALL_PREFIX:PATH=$WORKPATH/install/v5te/node -DOPENSSL_ROOT_DIR:PATH=$WORKPATH/install/v5te/openssl -DBOOST_ROOT:PATH=$WORKPATH/install/v5te/boost -DNODE_BUILD_TEST:BOOL=OFF -DNODE_CROSS_COMPILE:bool=ON -DNODE_SSL_SUPPORT:BOOL=ON -DCYNG_ROOT_DEV:PATH=$WORKPATH/cyng -DCYNG_ROOT_BUILD_SUBDIR:STRING=build/v5te -DCRYPT_ROOT:PATH=$WORKPATH/crypto -DCRYPT_BUILD:PATH=$WORKPATH/crypto/build/v5te -DCMAKE_BUILD_TYPE=Release -DCMAKE_FIND_DEBUG_MODE=ON -DCMAKE_TOOLCHAIN_FILE=${CROSSCMAKEFILE} ../.. 
     cd ../..
 else
 	echo "node already configured"
@@ -180,7 +191,7 @@ cd build/v5te && \
 
 echo "===================================================================="
 cd $WORKPATH
-install_boost
+#install_boost
 
 
 #
@@ -188,7 +199,7 @@ install_boost
 #
 echo "===================================================================="
 cd $WORKPATH
-install_ssl
+#install_ssl
 
 
 #
@@ -197,7 +208,7 @@ install_ssl
 
 echo "===================================================================="
 cd $WORKPATH
-install_cyng
+#install_cyng
 
 #
 # (7) Install crypto library
@@ -205,7 +216,7 @@ install_cyng
 
 echo "===================================================================="
 cd $WORKPATH
-install_crypto
+#install_crypto
 
 
 #
@@ -213,15 +224,18 @@ install_crypto
 #
 echo "===================================================================="
 cd $WORKPATH
-install_node
+#install_node
 
 
 
 #
 # build IPK
 #
-echo "OPKG package builder expected in $WORKPATH/opkg-tools"
+echo "OPKG package builder expected in $OPKGTOOLS"
 
-cd $WORKPATH/build/v5te
-fakeroot $WORKPATH/opkg-tools/opkg-buildpackage
+cd $WORKPATH/node/build/v5te
+fakeroot $OPKGTOOLS/opkg-buildpackage
+
+cp $WORKPATH/node/build/v5te/node*ipk  $WORKPATH/
+ls -l $WORKPATH/*ipk
 
