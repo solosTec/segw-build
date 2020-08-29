@@ -4,7 +4,7 @@
 docker run --rm -it seemann/oecp-node:v0.8 bash
 
 
-#How to get the ipk package
+# How to get the ipk package
 
 ```
 
@@ -15,7 +15,7 @@ docker rm oecp-dist
 
 ```
 
-#How to use the smf-dist image:
+# How to use the smf-dist image:
 
 docker-compose.yml
 ```
@@ -38,7 +38,7 @@ services:
 
 ```
 
-#How the build works:
+# How the build works:
 There are 5 steps in the build process:
 - base: provides a docker image that contains all tools and libs to build the project (e.g. gcc, boost, libsssl, ...)
 - cyng: based on _base_ a docker image is created that contains the _cyng_ libs.
@@ -46,7 +46,7 @@ There are 5 steps in the build process:
 - node: based on _crypto_ a docker image is created that contains the _node_ executables
 - dist: a distribution image is created that contains only the libs and executables to run the application.
 
-#What to do if a new branch is created in the c++ projects:
+# What to do if a new branch is created in the c++ projects:
 
 You should change the parameter in the _circleci.yml_ to the new branch name (current value is v0.8):
 ```
