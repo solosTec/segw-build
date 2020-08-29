@@ -57,5 +57,9 @@ You should change the parameter in the _circleci.yml_ to the new branch name (cu
 After that the build runs but will fail because the branch is not available in the _cyng_ and _node_ project.
 Create a new branch in the _cyng_ project, push the branch to github. The build will fail at the _node_ build.
 Create a new branch in the _node_ project, push the branch to github. The build will complete.
+
 Note: the project _crypto_ runs always on master. Also note the next step in the build needs a docker image
 tagged with the branch name - e.g. for the next step you need to wait until the step  before has finished.
+
+Note: if you push anything to this github project a complete build will run. Except you put _`[skip ci]`_ in
+the commit message.
