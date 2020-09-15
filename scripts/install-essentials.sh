@@ -41,6 +41,7 @@ apt-get update && \
 #	texlive-base \
 #	texinfo \
 	python-dev \
+	libpython3.8-dev \
 	fakeroot
 
 #
