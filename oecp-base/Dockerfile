@@ -41,6 +41,13 @@ RUN apt-get install -y gcc-8-multilib g++-8-multilib
 # gcc 8 should now be the default one
 RUN gcc  --version
 
+#
+# note: installing this toolchain requires python 3.6
+# Ubuntu 20.x is shipped with python 3.8. To install python 3.6 run
+# sudo add-apt-repository ppa:deadsnakes/ppa
+# sudo apt-get update
+# sudo apt-get install python3.6
+#
 
 RUN wget https://debian.pengutronix.de/debian/pool/main/p/pengutronix-archive-keyring/pengutronix-archive-keyring_2020.02.11_all.deb
 RUN dpkg -i pengutronix-archive-keyring_2020.02.11_all.deb
