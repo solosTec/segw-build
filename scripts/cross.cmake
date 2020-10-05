@@ -38,7 +38,7 @@ set(CMAKE_FIND_ROOT_PATH ${CROSS_ROOT})
 #
 # cross compiler location
 #
-set(CROSS_TOOLS /opt/OSELAS.Toolchain-2018.12.0/arm-v5te-linux-gnueabi/gcc-8.2.1-glibc-2.28-binutils-2.31.1-kernel-3.16.80-sanitized)
+set(CROSS_TOOLS /opt/OSELAS.Toolchain-2018.12.0/arm-v5te-linux-gnueabi/gcc-8.2.1-glibc-2.28-binutils-2.31.1-kernel-4.19-sanitized)
 set(CMAKE_C_COMPILER ${CROSS_TOOLS}/bin/arm-v5te-linux-gnueabi-gcc)
 set(CMAKE_CXX_COMPILER ${CROSS_TOOLS}/bin/arm-v5te-linux-gnueabi-c++)
 # should be found automatically
