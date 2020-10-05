@@ -120,7 +120,7 @@ fi
 cd crypto
 if [ ! -d build/x64 ]; then
     mkdir -p build/x64 && cd build/x64 && \
-    cmake -DCMAKE_INSTALL_PREFIX:PATH=$WORKPATH/install/x64/crypto -DCRYPT_BUILD_TEST:bool=OFF -DCMAKE_BUILD_TYPE=Release -DCYNG_ROOT=$WORKPATH/cyng -DCYNG_INCLUDE=$WORKPATH/cyng/src/main/include -DCYNG_LIBRARY=$WORKPATH/cyng/build/x64 ../..  && \
+    cmake -DCMAKE_INSTALL_PREFIX:PATH=$WORKPATH/install/x64/crypto -DOPENSSL_ROOT_DIR:PATH=$WORKPATH/install/x64/openssl -DCRYPT_BUILD_TEST:bool=OFF -DCMAKE_BUILD_TYPE=Release -DCYNG_ROOT=$WORKPATH/cyng -DCYNG_INCLUDE=$WORKPATH/cyng/src/main/include -DCYNG_LIBRARY=$WORKPATH/cyng/build/x64 ../..  && \
     cd ../..
 else
 	echo "crypto already configured"
