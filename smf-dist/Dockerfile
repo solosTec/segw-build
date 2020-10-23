@@ -1,5 +1,5 @@
 ARG BASE_TAG
-FROM seemann/node:${BASE_TAG} AS build
+FROM solostec/node:${BASE_TAG} AS build
 FROM solostec/dashboard:gateway-privileges AS dash
 
 FROM ubuntu:bionic

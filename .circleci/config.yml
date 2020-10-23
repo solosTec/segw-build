@@ -38,8 +38,8 @@ jobs:
           steps:
             - checkout
             - docker-login
-            - run: docker build -f base-builder/Dockerfile . -t seemann/cpp-build-base:<<pipeline.parameters.branch>> --build-arg BOOST_VERSION=1.74.0 --build-arg BOOST_VERSION_NAME=1_74_0
-            - run: docker push seemann/cpp-build-base:<<pipeline.parameters.branch>>
+            - run: docker build -f base-builder/Dockerfile . -t solostec/cpp-build-base:<<pipeline.parameters.branch>> --build-arg BOOST_VERSION=1.74.0 --build-arg BOOST_VERSION_NAME=1_74_0
+            - run: docker push solostec/cpp-build-base:<<pipeline.parameters.branch>>
 
   build-oecp-image:
     machine: true
@@ -51,8 +51,8 @@ jobs:
           steps:
             - checkout
             - docker-login
-            - run: docker build -f oecp-base/Dockerfile . -t seemann/oecp-base:<<pipeline.parameters.branch>> --build-arg BOOST_VERSION=1.74.0 --build-arg BOOST_VERSION_NAME=1_74_0
-            - run: docker push seemann/oecp-base:<<pipeline.parameters.branch>>
+            - run: docker build -f oecp-base/Dockerfile . -t solostec/oecp-base:<<pipeline.parameters.branch>> --build-arg BOOST_VERSION=1.74.0 --build-arg BOOST_VERSION_NAME=1_74_0
+            - run: docker push solostec/oecp-base:<<pipeline.parameters.branch>>
 
   build-cyng:
     machine: true
@@ -66,8 +66,8 @@ jobs:
           steps:
             - checkout
             - docker-login
-            - run: docker build -f cyng/Dockerfile . -t seemann/cyng:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>> --build-arg BRANCH=<<pipeline.parameters.branch>>
-            - run: docker push seemann/cyng:<<pipeline.parameters.branch>>
+            - run: docker build -f cyng/Dockerfile . -t solostec/cyng:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>> --build-arg BRANCH=<<pipeline.parameters.branch>>
+            - run: docker push solostec/cyng:<<pipeline.parameters.branch>>
 
   build-oecp-cyng:
     machine: true
@@ -81,8 +81,8 @@ jobs:
           steps:
             - checkout
             - docker-login
-            - run: docker build -f oecp-cyng/Dockerfile . -t seemann/oecp-cyng:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>> --build-arg BRANCH=<<pipeline.parameters.branch>>
-            - run: docker push seemann/oecp-cyng:<<pipeline.parameters.branch>>
+            - run: docker build -f oecp-cyng/Dockerfile . -t solostec/oecp-cyng:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>> --build-arg BRANCH=<<pipeline.parameters.branch>>
+            - run: docker push solostec/oecp-cyng:<<pipeline.parameters.branch>>
 
   build-crypto:
     machine: true
@@ -97,8 +97,8 @@ jobs:
           steps:
             - checkout
             - docker-login
-            - run: docker build -f crypto/Dockerfile . -t seemann/crypto:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>> --build-arg BRANCH=master
-            - run: docker push seemann/crypto:<<pipeline.parameters.branch>>
+            - run: docker build -f crypto/Dockerfile . -t solostec/crypto:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>> --build-arg BRANCH=master
+            - run: docker push solostec/crypto:<<pipeline.parameters.branch>>
 
   build-oecp-crypto:
     machine: true
@@ -113,8 +113,8 @@ jobs:
           steps:
             - checkout
             - docker-login
-            - run: docker build -f oecp-crypto/Dockerfile . -t seemann/oecp-crypto:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>> --build-arg BRANCH=master
-            - run: docker push seemann/oecp-crypto:<<pipeline.parameters.branch>>
+            - run: docker build -f oecp-crypto/Dockerfile . -t solostec/oecp-crypto:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>> --build-arg BRANCH=master
+            - run: docker push solostec/oecp-crypto:<<pipeline.parameters.branch>>
 
   build-node:
     machine: true
@@ -130,8 +130,8 @@ jobs:
           steps:
             - checkout
             - docker-login
-            - run: docker build -f node/Dockerfile . -t seemann/node:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>> --build-arg BRANCH=<<pipeline.parameters.branch>>
-            - run: docker push seemann/node:<<pipeline.parameters.branch>>
+            - run: docker build -f node/Dockerfile . -t solostec/node:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>> --build-arg BRANCH=<<pipeline.parameters.branch>>
+            - run: docker push solostec/node:<<pipeline.parameters.branch>>
 
   build-oecp-node:
     machine: true
@@ -147,8 +147,8 @@ jobs:
           steps:
             - checkout
             - docker-login
-            - run: docker build -f oecp-node/Dockerfile . -t seemann/oecp-node:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>> --build-arg BRANCH=<<pipeline.parameters.branch>>
-            - run: docker push seemann/oecp-node:<<pipeline.parameters.branch>>
+            - run: docker build -f oecp-node/Dockerfile . -t solostec/oecp-node:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>> --build-arg BRANCH=<<pipeline.parameters.branch>>
+            - run: docker push solostec/oecp-node:<<pipeline.parameters.branch>>
 
   build-oecp-dist:
     machine: true
@@ -165,8 +165,8 @@ jobs:
           steps:
             - checkout
             - docker-login
-            - run: docker build -f oecp-dist/Dockerfile . -t seemann/oecp-dist:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>>
-            - run: docker push seemann/oecp-dist:<<pipeline.parameters.branch>>
+            - run: docker build -f oecp-dist/Dockerfile . -t solostec/oecp-dist:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>>
+            - run: docker push solostec/oecp-dist:<<pipeline.parameters.branch>>
 
   build-dist:
     machine: true
@@ -183,8 +183,8 @@ jobs:
           steps:
             - checkout
             - docker-login
-            - run: docker build -f smf-dist/Dockerfile . -t seemann/smf-dist:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>>
-            - run: docker push seemann/smf-dist:<<pipeline.parameters.branch>>
+            - run: docker build -f smf-dist/Dockerfile . -t solostec/smf-dist:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>>
+            - run: docker push solostec/smf-dist:<<pipeline.parameters.branch>>
 
 workflows:
   version: 2

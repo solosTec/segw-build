@@ -1,5 +1,5 @@
 ARG BASE_TAG
-FROM seemann/oecp-base:${BASE_TAG} AS build
+FROM solostec/oecp-base:${BASE_TAG} AS build
 
 ARG BRANCH
 

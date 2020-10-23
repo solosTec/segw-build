@@ -1,5 +1,5 @@
 ARG BASE_TAG
-FROM seemann/cyng:${BASE_TAG} AS build
+FROM solostec/cyng:${BASE_TAG} AS build
 
 ARG BRANCH
 

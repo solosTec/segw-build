@@ -1,5 +1,5 @@
 ARG BASE_TAG
-FROM seemann/crypto:${BASE_TAG} AS build
+FROM solostec/crypto:${BASE_TAG} AS build
 
 ARG BRANCH
 

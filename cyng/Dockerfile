@@ -1,5 +1,5 @@
 ARG BASE_TAG
-FROM seemann/cpp-build-base:${BASE_TAG} AS build
+FROM solostec/cpp-build-base:${BASE_TAG} AS build
 
 ARG BRANCH
 

@@ -1,5 +1,5 @@
 ARG BASE_TAG
-FROM seemann/oecp-node:${BASE_TAG} AS build
+FROM solostec/oecp-node:${BASE_TAG} AS build
 
 
 FROM ubuntu:bionic
