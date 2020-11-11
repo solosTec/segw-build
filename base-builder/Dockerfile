@@ -17,7 +17,8 @@ RUN apt-get update && \
 	lsb-release \
 	software-properties-common \
 	unixodbc-dev \
-	gpg
+	gpg \
+	ninja-build
 
 #install a current version of cmake
 RUN apt purge --auto-remove cmake
