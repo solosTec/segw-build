@@ -38,7 +38,7 @@ jobs:
           steps:
             - checkout
             - docker-login
-            - run: docker build -f base-builder/Dockerfile . -t solostec/cpp-build-base:<<pipeline.parameters.branch>> --build-arg BOOST_VERSION=1.74.0 --build-arg BOOST_VERSION_NAME=1_74_0
+            - run: docker build -f base-builder/Dockerfile . -t solostec/cpp-build-base:<<pipeline.parameters.branch>> --build-arg BOOST_VERSION=1.75.0 --build-arg BOOST_VERSION_NAME=1_75_0
             - run: docker push solostec/cpp-build-base:<<pipeline.parameters.branch>>
 
   build-oecp-image:
@@ -51,7 +51,7 @@ jobs:
           steps:
             - checkout
             - docker-login
-            - run: docker build -f oecp-base/Dockerfile . -t solostec/oecp-base:<<pipeline.parameters.branch>> --build-arg BOOST_VERSION=1.74.0 --build-arg BOOST_VERSION_NAME=1_74_0
+            - run: docker build -f oecp-base/Dockerfile . -t solostec/oecp-base:<<pipeline.parameters.branch>> --build-arg BOOST_VERSION=1.75.0 --build-arg BOOST_VERSION_NAME=1_75_0
             - run: docker push solostec/oecp-base:<<pipeline.parameters.branch>>
 
   build-cyng:
