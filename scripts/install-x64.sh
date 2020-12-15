@@ -25,8 +25,8 @@ fi
 
 install_boost()
 {
-BOOST_VERSION=1.74.0
-BOOST_VERSION_NAME=1_74_0
+BOOST_VERSION=1.75.0
+BOOST_VERSION_NAME=1_75_0
 
 if [ ! -f boost_$BOOST_VERSION_NAME.tar.bz2 ]; then
 	echo "Download boost_$BOOST_VERSION_NAME.tar.bz2"
