@@ -60,8 +60,8 @@ ENV PATH="${PATH}:/opt/OSELAS.Toolchain-2018.12.0/arm-v5te-linux-gnueabi/gcc-8.2
 RUN echo "export PATH=$PATH" > /etc/environment
 
 # install the boost version - version can be overriden by --build-args
-ARG BOOST_VERSION=1.74.0
-ARG BOOST_VERSION_NAME=1_74_0
+ARG BOOST_VERSION=1.75.0
+ARG BOOST_VERSION_NAME=1_75_0
 
 WORKDIR /src
 
