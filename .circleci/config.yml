@@ -6,7 +6,7 @@ parameters:
     default: base
   branch:
     type: string
-    default: v0.8
+    default: v0.9
 
 commands:
   docker-login:
