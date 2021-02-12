@@ -97,7 +97,7 @@ jobs:
           steps:
             - checkout
             - docker-login
-            - run: docker build -f crypto/Dockerfile . -t solostec/crypto:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>> --build-arg BRANCH=master
+            - run: docker build -f crypto/Dockerfile . -t solostec/crypto:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>> --build-arg BRANCH=<pipeline.parameters.branch>>
             - run: docker push solostec/crypto:<<pipeline.parameters.branch>>
 
   build-oecp-crypto:
@@ -113,7 +113,7 @@ jobs:
           steps:
             - checkout
             - docker-login
-            - run: docker build -f oecp-crypto/Dockerfile . -t solostec/oecp-crypto:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>> --build-arg BRANCH=master
+            - run: docker build -f oecp-crypto/Dockerfile . -t solostec/oecp-crypto:<<pipeline.parameters.branch>> --build-arg BASE_TAG=<<pipeline.parameters.branch>> --build-arg BRANCH=<pipeline.parameters.branch>>
             - run: docker push solostec/oecp-crypto:<<pipeline.parameters.branch>>
 
   build-node:
