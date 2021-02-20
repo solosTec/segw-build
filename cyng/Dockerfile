@@ -15,7 +15,7 @@ RUN git submodule update --init --recursive
 
 RUN mkdir -p build && \
     cd build &&  \
-    cmake -DCMAKE_BUILD_TYPE=Release ..  &&  \
-    make -j4 all &&  \
-    make install &&  \
+    cmake -DCMAKE_BUILD_TYPE=Release -G Ninja ..  &&  \
+    ninja -j4 all &&  \
+    ninja install &&  \
     cpack
