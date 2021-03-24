@@ -14,7 +14,7 @@ RUN apt-get update && \
 WORKDIR /app
 
 COPY --from=build /usr/local/lib/libboost_* /usr/local/lib/
-COPY --from=build /usr/local/lib/libcrypto.so /usr/local/lib/
+COPY --from=build /usr/local/lib/libsmfsec.so /usr/local/lib/
 COPY --from=build /src/cyng/build/*.deb ./
 COPY --from=build /src/node/build/x64/*.deb ./
 
