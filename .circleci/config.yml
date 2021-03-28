@@ -194,7 +194,7 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "44:d8:95:ae:1c:58:4d:93:28:67:99:51:24:d4:85:31"
-      - run: ssh -o StrictHostKeyChecking=no -t segw.ch /opt/segw/deploy.sh
+      - run: ssh -o StrictHostKeyChecking=no -t segw.ch /opt/segw_v0.9/deploy.sh
 
 workflows:
   version: 2
