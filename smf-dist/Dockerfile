@@ -1,6 +1,6 @@
 ARG BASE_TAG
 FROM solostec/node:${BASE_TAG} AS build
-FROM solostec/dashboard:gateway-privileges AS dash
+FROM solostec/dashboard:develop AS dash
 
 FROM ubuntu:bionic
 
