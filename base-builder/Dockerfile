@@ -33,13 +33,14 @@ RUN cmake --version
 RUN add-apt-repository ppa:ubuntu-toolchain-r/test
 RUN apt update
 RUN apt upgrade -y
+RUN apt-get install -y gcc-8 g++-8
 RUN apt-get install -y gcc-9 g++-9
 RUN apt-get install libstdc++6
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 700 --slave /usr/bin/g++ g++ /usr/bin/g++-7
-#RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 800 --slave /usr/bin/g++ g++ /usr/bin/g++-8
+RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 800 --slave /usr/bin/g++ g++ /usr/bin/g++-8
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 900 --slave /usr/bin/g++ g++ /usr/bin/g++-9
 
-# gcc 8 should now be the default one
+# gcc 9 should now be the default one
 RUN gcc --version
 
 
