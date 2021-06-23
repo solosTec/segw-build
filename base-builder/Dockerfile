@@ -29,7 +29,7 @@ RUN apt install -y cmake
 RUN cmake --version
 
 #https://askubuntu.com/questions/1028601/install-gcc-8-only-on-ubuntu-18-04
-RUN apt-get install -y gcc-8 g++-8
+RUN apt-get install -y gcc-9 g++-9
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 700 --slave /usr/bin/g++ g++ /usr/bin/g++-7
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 800 --slave /usr/bin/g++ g++ /usr/bin/g++-8
 
