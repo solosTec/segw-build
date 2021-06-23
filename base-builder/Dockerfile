@@ -32,7 +32,7 @@ RUN cmake --version
 #https://askubuntu.com/questions/1140183/install-gcc-9-on-ubuntu-18-04
 RUN add-apt-repository ppa:ubuntu-toolchain-r/test
 RUN apt update
-RUN apt upgrade
+RUN apt upgrade -y
 RUN apt-get install -y gcc-9 g++-9
 RUN apt-get install libstdc++6
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 700 --slave /usr/bin/g++ g++ /usr/bin/g++-7
