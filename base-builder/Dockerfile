@@ -44,12 +44,12 @@ RUN gcc --version
 
 
 # install the boost version - version can be overriden by --build-args
-ARG BOOST_VERSION=1.75.0
-ARG BOOST_VERSION_NAME=1_75_0
+ARG BOOST_VERSION=1.77.0
+ARG BOOST_VERSION_NAME=1_77_0
 
+#RUN wget https://dl.bintray.com/boostorg/release/${BOOST_VERSION}/source/boost_${BOOST_VERSION_NAME}.tar.bz2 && \
 # use this from version 1.77 upwards
-#RUN wget https://boostorg.jfrog.io/artifactory/main/release/${BOOST_VERSION}/source/boost_${BOOST_VERSION_NAME}.tar.bz2
-RUN wget https://dl.bintray.com/boostorg/release/${BOOST_VERSION}/source/boost_${BOOST_VERSION_NAME}.tar.bz2 && \
+RUN wget https://boostorg.jfrog.io/artifactory/main/release/${BOOST_VERSION}/source/boost_${BOOST_VERSION_NAME}.tar.bz2 \
     tar xjvf boost_${BOOST_VERSION_NAME}.tar.bz2 && \
     cd boost_${BOOST_VERSION_NAME} && \
     ./bootstrap.sh --with-libraries=filesystem,iostreams,program_options,system,thread,timer,random,test,regex,date_time && \
