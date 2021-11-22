@@ -39,7 +39,7 @@ link_directories(
 #
 # Boost support
 #
-set(BOOST_ROOT  /src/boost_1_73_0)
+set(BOOST_ROOT  /src/boost_1_77_0)
 set(BOOST_INCLUDEDIR "${BOOST_ROOT}/boost" CACHE PATH "BOOST_INCLUDEDIR")
 set(BOOST_LIBRARYDIR "${BOOST_ROOT}/lib" CACHE PATH "BOOST_LIBRARYDIR")
 
