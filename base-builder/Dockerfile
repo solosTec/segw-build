@@ -53,4 +53,4 @@ RUN wget https://boostorg.jfrog.io/artifactory/main/release/${BOOST_VERSION}/sou
     tar xjvf boost_${BOOST_VERSION_NAME}.tar.bz2 && \
     cd boost_${BOOST_VERSION_NAME} && \
     ./bootstrap.sh --with-libraries=filesystem,iostreams,program_options,system,thread,timer,random,test,regex,date_time && \
-    ./b2 install
+    ./b2 -d0 install
