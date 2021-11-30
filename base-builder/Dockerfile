@@ -3,7 +3,7 @@
 FROM ubuntu:focal
 ENV TZ=Europe/Berlin
 
-RUN apt-get update && \
+RUN DEBIAN_FRONTEND="noninteractive" apt-get update && \
 	apt-get install -y \
 	build-essential \
 	apt-utils \
