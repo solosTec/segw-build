@@ -1,5 +1,6 @@
-FROM ubuntu:bionic
-
+#FROM ubuntu:bionic
+# try 20.04
+FROM ubuntu:focal
 
 
 RUN apt-get update && \
