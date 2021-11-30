@@ -2,10 +2,12 @@
 # try 20.04
 FROM ubuntu:focal
 ENV TZ=Europe/Berlin
+ENV DEBIAN_FRONTEND noninteractive
 
-RUN DEBIAN_FRONTEND="noninteractive" apt-get update && \
+RUN apt-get update && \
 	apt-get install -y \
 	build-essential \
+	tzdata \
 	apt-utils \
 	git \
 	nano \
