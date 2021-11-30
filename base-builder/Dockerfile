@@ -1,7 +1,7 @@
 #FROM ubuntu:bionic
 # try 20.04
 FROM ubuntu:focal
-
+ENV TZ=Europe/Berlin
 
 RUN apt-get update && \
 	apt-get install -y \
