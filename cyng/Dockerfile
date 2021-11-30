@@ -7,6 +7,9 @@ WORKDIR /src
 
 RUN git clone https://github.com/solosTec/cyng && cd cyng
 
+# Debug 
+RUN g++ --version
+
 WORKDIR /src/cyng
 
 RUN git checkout ${BRANCH}
