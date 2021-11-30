@@ -18,6 +18,7 @@ RUN apt-get update && \
 	software-properties-common \
 	unixodbc-dev \
 	gpg \
+	libsystemd-dev \
 	ninja-build
 
 #install a current version of cmake
