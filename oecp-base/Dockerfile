@@ -21,6 +21,7 @@ RUN apt-get update && \
 	texlive-base \
 	texinfo \
 	python-dev \
+	libsystemd-dev \
 	fakeroot \
 	gpg
 
