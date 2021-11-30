@@ -19,10 +19,8 @@ WORKDIR /src/cyng/build
 
 ADD cross.cmake .
 
-RUN cmake -DCYNG_BUILD_TEST:bool=OFF -DCYNG_CROSS_COMPILE:bool=ON -DCYNG_SSL_SUPPORT:bool=ON -DCMAKE_TOOLCHAIN_FILE=cross.cmake .. && \
+RUN cmake -DCYNG_UNIT_TEST:bool=OFF -DCYNG_CROSS_COMPILE:bool=ON -DCMAKE_TOOLCHAIN_FILE=cross.cmake .. && \
     make -j4 all && \
     make install
-
-
 
 
