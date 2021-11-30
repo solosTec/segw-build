@@ -1,6 +1,8 @@
-#FROM ubuntu:bionic
+# 
+FROM ubuntu:bionic
 # try 20.04
-FROM ubuntu:focal
+# FROM ubuntu:focal
+# focal produces the error: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.26' not found
 ENV TZ=Europe/Berlin
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -33,11 +35,11 @@ RUN apt update
 RUN apt install -y cmake
 RUN cmake --version
 
-#RUN apt-get install -y gcc-8 g++-8
-RUN apt-get install -y gcc-9 g++-9
+RUN apt-get install -y gcc-8 g++-8
+#RUN apt-get install -y gcc-9 g++-9
 RUN apt-get install -y libstdc++6
 #RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 70 --slave /usr/bin/g++ g++ /usr/bin/g++-7
-#RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 80 --slave /usr/bin/g++ g++ /usr/bin/g++-8
+RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 80 --slave /usr/bin/g++ g++ /usr/bin/g++-8
 #RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 90 --slave /usr/bin/g++ g++ /usr/bin/g++-9
 
 # gcc 9 should now be the default one
