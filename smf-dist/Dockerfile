@@ -2,8 +2,8 @@ ARG BASE_TAG
 FROM solostec/node:${BASE_TAG} AS build
 FROM solostec/dashboard:develop AS dash
 
-#FROM ubuntu:bionic
-FROM ubuntu:focal
+FROM ubuntu:bionic
+#FROM ubuntu:focal
 
 RUN apt-get update && \
 	apt-get install -y  \
