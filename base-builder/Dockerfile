@@ -1,7 +1,7 @@
 # 
-FROM ubuntu:bionic
+#FROM ubuntu:bionic
 # try 20.04
-# FROM ubuntu:focal
+FROM ubuntu:focal
 # focal produces the error: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.26' not found
 ENV TZ=Europe/Berlin
 ENV DEBIAN_FRONTEND noninteractive
