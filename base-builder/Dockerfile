@@ -1,8 +1,8 @@
 # 
-#FROM ubuntu:bionic
+FROM ubuntu:bionic
 # try 20.04
-FROM ubuntu:focal
-# focal produces the error: /usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.26' not found
+# FROM ubuntu:focal
+# focal produces the error: std::bad_alloc on most services
 ENV TZ=Europe/Berlin
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -29,8 +29,8 @@ RUN apt-get update && \
 #install a current version of cmake
 RUN apt purge --auto-remove cmake
 RUN wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
-#RUN apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
-RUN apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'
+RUN apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
+#RUN apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'
 RUN apt update
 RUN apt install -y cmake
 RUN cmake --version
