@@ -70,7 +70,7 @@ WORKDIR /src
 RUN wget https://boostorg.jfrog.io/artifactory/main/release/${BOOST_VERSION}/source/boost_${BOOST_VERSION_NAME}.tar.bz2 && \
     tar xjvf boost_${BOOST_VERSION_NAME}.tar.bz2 && \
     cd boost_${BOOST_VERSION_NAME} && \
-    ./bootstrap.sh --with-libraries=filesystem,iostreams,program_options,system,thread,timer,random,test,regex,date_time && \
+    ./bootstrap.sh --with-libraries=filesystem,iostreams,program_options,system,thread,timer,random,test,regex,date_time,locale && \
      sed -i 's/using gcc/using gcc : arm : arm-v5te-linux-gnueabi-c++/g'  project-config.jam && \
     ./b2 -j4 address-model=32 && \
     ./b2 install address-model=32
